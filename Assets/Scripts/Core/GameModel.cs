@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Origins
 {
     public enum Phase { Planning, Action, Finished }
-    public enum UnitKind { Scout, Hunter, Settler, Warrior, Slinger }
+    public enum UnitKind { Scout, Hunter, Settler, Warrior, Slinger, Trader }
     public sealed class Unit
     {
         public int Id;
@@ -15,7 +15,7 @@ namespace Origins
         public bool WaitOrder;
         public bool HasOrder { get { return WaitOrder || FoundOrder || Order.Count>1; } }
         public int Movement { get { return Kind==UnitKind.Scout ? 4 : 3; } }
-        public string Name { get { return Kind==UnitKind.Scout ? "Разведчики" : Kind==UnitKind.Hunter ? "Охотники" : Kind==UnitKind.Warrior ? "Воины" : Kind==UnitKind.Slinger ? "Пращники" : "Поселенцы"; } }
+        public string Name { get { return Kind==UnitKind.Scout ? "Разведчики" : Kind==UnitKind.Hunter ? "Охотники" : Kind==UnitKind.Warrior ? "Воины" : Kind==UnitKind.Slinger ? "Пращники" : Kind==UnitKind.Trader ? "Торговец" : "Поселенцы"; } }
     }
     public sealed class Choice
     {

@@ -110,6 +110,7 @@ namespace Origins
             yield return new WaitForSeconds(3);
             SmokeAssert(Game.Cities[0].Population>1,"food surplus creates new residents");
             SmokeAssert(Game.Cities[0].Improvements.Count>0,"unlocked resource has a real improvement");
+            SmokeAssert(Game.World.RoadEdges.Count>0,"residents leave persistent dry roads to improved resources");
             SmokeAssert(Game.Technologies.Count>0 && Game.CulturalOpenings.Count>0,"science and culture openings both applied");
             SmokeAssert(Game.Cities[0].Territory.Count>7,"culture visibly expands the territory");
             CaptureWorld("developed-city.png");

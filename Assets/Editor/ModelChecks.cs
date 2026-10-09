@@ -61,6 +61,7 @@ namespace Origins.Editor
             CheckEconomy();
             CheckAdditionalBiomes();
             CheckCultureAndResolver();
+            CheckMerchantRoads();
             CheckWondersAndTools();
             for(int seed=0;seed<25;seed++) Simulate(seed);
         }

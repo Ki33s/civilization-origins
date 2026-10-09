@@ -142,6 +142,7 @@ namespace Origins
                 if(bestBuilding==null && required!=null && HasOpening(required) && !city.Improvements.ContainsKey(best))
                 {
                     city.Improvements.Add(best,required);
+                    World.ConnectRoad(city.Position,best);
                     Log(city.Name+": житель проложил тропу и освоил ресурс.");
                 }
                 city.Workers.Add(new ResidentJob{ResidentId=id,Position=best,BuildingId=bestBuilding,Profession=Profession(city,best,bestBuilding)});

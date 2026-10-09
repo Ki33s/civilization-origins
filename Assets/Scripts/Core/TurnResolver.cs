@@ -22,6 +22,7 @@ namespace Origins
         sealed class CommittedUnit
         {
             public Unit Unit;
+            public UnitKind Kind;
             public Hex[] Route;
             public bool Found, Wait, Stopped;
             public int Index, Due, Speed;
@@ -59,7 +60,7 @@ namespace Origins
             committed=new List<CommittedUnit>(); resolved=null;
             foreach(var u in Units)
             {
-                var c=new CommittedUnit { Unit=u, Route=u.Order.ToArray(), Found=u.FoundOrder, Wait=u.WaitOrder, Speed=Movement(u) };
+                var c=new CommittedUnit { Unit=u, Kind=u.Kind, Route=u.Order.ToArray(), Found=u.FoundOrder, Wait=u.WaitOrder, Speed=Movement(u) };
                 c.Due=c.Route.Length>1 ? World.Get(c.Route[1]).MoveCost : int.MaxValue;
                 committed.Add(c);
             }
@@ -121,6 +122,7 @@ namespace Origins
                 foreach(var move in moves) if(move.Tick==tick)
                 {
                     var c=committed.Find(x=>x.Unit.Id==move.UnitId); c.Unit.Position=move.To; c.Index++;
+                    if(c.Kind==UnitKind.Trader) World.AddRoad(move.From,move.To);
                     c.Due=c.Index+1<c.Route.Length ? tick+World.Get(c.Route[c.Index+1]).MoveCost : int.MaxValue;
                     World.Reveal(move.To,2); var tile=World.Get(move.To);
                     if(tile.Resource==Resource.Discovery && !tile.DiscoveryTaken)

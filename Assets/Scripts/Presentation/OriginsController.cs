@@ -152,6 +152,7 @@ namespace Origins
                     }
                     yield return null;
                 }
+                foreach(var move in result.Moves) if(move.Tick==step) view.ShowRoad(move.From,move.To);
             }
             yield return new WaitForSeconds(.65f);
             Game.FinishAction(); view.Sync();

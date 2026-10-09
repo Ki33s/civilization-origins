@@ -37,9 +37,11 @@ namespace Origins.Editor
             foreach(UnitKind kind in Enum.GetValues(typeof(UnitKind)))
             {
                 Transform model=presenter.CreateUnitPreview(kind); presenter.AddPreviewPlinth(model);
-                model.gameObject.AddComponent<PreviewUnitMotion>();
+                if(kind==UnitKind.Trader) model.gameObject.AddComponent<PreviewTraderMotion>();
+                else model.gameObject.AddComponent<PreviewUnitMotion>();
                 var unit=new Unit{Kind=kind};
                 AddModel(model,"Unit_"+kind,unit.Name,unit.Movement+" очка движения",groups[1].transform,index++,2,3.5f,1.2f);
+                if(kind==UnitKind.Trader) groups[1].transform.GetChild(groups[1].transform.childCount-1).GetComponent<DevelopmentGalleryItem>().details="Образец будущей торговли: человек с мешком оставляет сухую тропу. Реки существуют до движения. В каменном веке производство торговца и торговые доходы ещё закрыты по OpenSpec.";
             }
             index=0;
             foreach(var project in content.Projects) if(!project.Unit.HasValue)

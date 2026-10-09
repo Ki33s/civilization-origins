@@ -120,6 +120,7 @@ namespace Origins
         }
         public void Sync()
         {
+            SyncRoads();
             foreach(var tile in game.World.Ordered)
             {
                 var mr=tiles[tile.Hex].GetComponent<MeshRenderer>();
@@ -188,7 +189,6 @@ namespace Origins
             foreach(var improvement in city.Improvements)
             {
                 Vector3 p=Position(improvement.Key)-go.transform.position;
-                DrawLine(go.transform,go.transform.position+Vector3.up*.04f,Position(improvement.Key)+Vector3.up*.04f,.07f,Mat("trail",new Color(.65f,.5f,.33f)));
                 if(improvement.Value=="farming")
                 {
                     Block(go.transform,"Cultivated soil",p+Vector3.up*.025f,new Vector3(1.1f,.035f,.9f),Mat("soil",new Color(.4f,.27f,.15f)));
@@ -226,14 +226,23 @@ namespace Origins
         {
             var go=new GameObject(unit.Name); go.transform.SetParent(root,false); units[unit.Id]=go.transform;
             Color color=unit.Kind==UnitKind.Scout ? new Color(.32f,.65f,.68f) : unit.Kind==UnitKind.Hunter || unit.Kind==UnitKind.Slinger ? new Color(.72f,.40f,.27f) : new Color(.76f,.66f,.37f);
-            string role=unit.Kind==UnitKind.Slinger ? "Пращник" : unit.Kind==UnitKind.Hunter ? "Охотник" : unit.Kind==UnitKind.Warrior ? "Воин" : unit.Kind==UnitKind.Scout ? "Разведчик" : "Поселенец";
-            for(int i=0;i<3;i++)
+            string role=unit.Kind==UnitKind.Trader ? "Торговец" : unit.Kind==UnitKind.Slinger ? "Пращник" : unit.Kind==UnitKind.Hunter ? "Охотник" : unit.Kind==UnitKind.Warrior ? "Воин" : unit.Kind==UnitKind.Scout ? "Разведчик" : "Поселенец";
+            int members=unit.Kind==UnitKind.Trader ? 1 : 3;
+            for(int i=0;i<members;i++)
             {
-                var member=Node(go.transform,"Member",new Vector3((i-1)*.19f,0,i==1 ? .1f : -.08f));
+                var member=Node(go.transform,"Member",members==1 ? Vector3.zero : new Vector3((i-1)*.19f,0,i==1 ? .1f : -.08f));
                 DetailedPerson(member,color,1,role,game.ToolStage);
                 if(unit.Kind==UnitKind.Settler) { Round(member,"Travel pack",new Vector3(0,.25f,-.065f),new Vector3(.12f,.16f,.07f),Straw); }
+                if(unit.Kind==UnitKind.Trader)
+                {
+                    Round(member,"Merchant goods sack",new Vector3(0,.24f,-.075f),new Vector3(.13f,.17f,.09f),Straw);
+                    for(int tie=0;tie<3;tie++) Band(member,new Vector3(0,.18f+tie*.035f,-.075f),.052f,Rope);
+                    Beam(member,"Pack carrying strap",new Vector3(-.065f,.17f,-.04f),new Vector3(-.065f,.30f,.034f),.006f,Rope);
+                    Jar(member,new Vector3(.10f,.08f,-.055f),.03f,.065f);
+                }
             }
             Ring(go.transform,new Vector3(0,.025f,0),.39f,color,"Unit base");
+            if(unit.Kind==UnitKind.Trader) return;
             Beam(go.transform,"Carved standard pole",new Vector3(0,0,-.16f),new Vector3(0,.70f,-.16f),.011f,Wood);
             for(int panel=0;panel<7;panel++) Block(go.transform,"Stitched standard cloth",new Vector3(.015f+panel*.027f,.65f,-.16f),new Vector3(.027f,.135f,.008f),Mat("unitflag"+unit.Kind,color));
             Band(go.transform,new Vector3(0,.56f,-.16f),.014f,Rope); Band(go.transform,new Vector3(0,.73f,-.16f),.014f,Rope);

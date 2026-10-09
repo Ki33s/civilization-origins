@@ -147,11 +147,11 @@ namespace Origins
         {
             Directory.CreateDirectory(folder); showUI=false; yield return null;
             if(Object.FindFirstObjectByType<OriginsController>()!=null) throw new System.InvalidOperationException("Gameplay leaked into the gallery");
-            string[] names={"tiles","units","buildings","residents","scout-detail","resident-detail","world","world-detail","models","forest-detail","tundra-detail","desert-detail","workshop-detail","potter-detail","fishhut-detail","stonehenge-detail","pyramids-detail","gardens-detail","slinger-detail","shepherd-detail","miner-stone","miner-hammer","miner-pick","miner-bronze","resources","berries-detail","grain-detail","ancient-site-detail","herd-detail"};
-            int[] focuses={-1,-1,-1,-1,0,0,-1,-1,-1,0,9,5,1,4,5,6,7,8,4,6,2,8,9,10,-1,0,3,5,7};
+            string[] names={"tiles","units","buildings","residents","scout-detail","resident-detail","world","world-detail","models","forest-detail","tundra-detail","desert-detail","workshop-detail","potter-detail","fishhut-detail","stonehenge-detail","pyramids-detail","gardens-detail","slinger-detail","shepherd-detail","miner-stone","miner-hammer","miner-pick","miner-bronze","resources","berries-detail","grain-detail","ancient-site-detail","herd-detail","trader-detail"};
+            int[] focuses={-1,-1,-1,-1,0,0,-1,-1,-1,0,9,5,1,4,5,6,7,8,4,6,2,8,9,10,-1,0,3,5,7,5};
             for(int i=0;i<names.Length;i++)
             {
-                SwitchTab(i>=24 ? 6 : i>=19 ? 3 : i==18 ? 1 : i>=12 ? 2 : i<4 ? i : i==4 ? 1 : i==5 ? 3 : i<8 ? 4 : i==8 ? 5 : 0);
+                SwitchTab(i==29 ? 1 : i>=24 ? 6 : i>=19 ? 3 : i==18 ? 1 : i>=12 ? 2 : i<4 ? i : i==4 ? 1 : i==5 ? 3 : i<8 ? 4 : i==8 ? 5 : 0);
                 if(focuses[i]>=0) FocusItem(focuses[i]);
                 if(i==1 || i==2 || i==3)
                 {
@@ -176,6 +176,7 @@ namespace Origins
                     File.WriteAllText(Path.Combine(folder,"world-stats.txt"),world.Statistics);
                 }
                 if(i==7) { focus=new Vector3(24,0,15); zoom=4.5f; Apply(); }
+                if(i==29) yield return new WaitForSeconds(5);
                 yield return null; yield return new WaitForEndOfFrame();
                 var rt=RenderTexture.GetTemporary(1600,1000,24,RenderTextureFormat.ARGB32,RenderTextureReadWrite.Default,4);
                 view.targetTexture=rt; view.Render(); var previous=RenderTexture.active; RenderTexture.active=rt;
