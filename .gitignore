@@ -1,0 +1,17 @@
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+Builds/
+*.csproj
+*.sln
+*.slnx
+.vs/
+TestResults/
+Tools/GitHub/
+*.log
+*.pidb
+*.user
+MemoryCaptures/
+Recordings/

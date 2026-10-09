@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdb39afedbb075b428e64d61de90e0fe, type: 3}
+  m_Name: NaturalDecorCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::Origins.NaturalDecorCatalog
+  stones:
+  - {fileID: 4300000, guid: fce6c6f17e3d1094394ea0f433423d1e, type: 2}
+  - {fileID: 4300000, guid: 182d28df27917a944893d05cd81def77, type: 2}
+  - {fileID: 4300000, guid: 850eabcf0eae7824090d1402417a42c6, type: 2}
+  - {fileID: 4300000, guid: 1ca9bd495d5d3dd40bcc43fd1af164c9, type: 2}
+  - {fileID: 4300000, guid: 1e4eb8afe633846439fb419168775aa7, type: 2}
+  - {fileID: 4300000, guid: 714f042adf3d7054e83fa9b75fdc68eb, type: 2}
+  - {fileID: 4300000, guid: 8669645a207b9214b98c7119e2a725b2, type: 2}
+  - {fileID: 4300000, guid: a452bb2d1cfc61a4e98f4b5143eb7b87, type: 2}
+  cacti:
+  - {fileID: 4300000, guid: 17cb59490fe9c7248a9327480c855047, type: 2}
+  - {fileID: 4300000, guid: 3231c32e84868bf49b8318c6a6b3eabb, type: 2}
+  - {fileID: 4300000, guid: 368dafc6d9c68454184f3125b9ec8869, type: 2}
+  surface: {fileID: 2100000, guid: 28531bcb176aaed43a37b02801ea2716, type: 2}

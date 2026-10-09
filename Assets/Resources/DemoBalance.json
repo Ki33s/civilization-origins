@@ -1,0 +1,18 @@
+{
+  "CenterFood": 1,
+  "CenterProduction": 4,
+  "CenterScience": 3,
+  "CenterCulture": 3,
+  "InitialBorderCost": 12,
+  "BorderCostStep": 6,
+  "InitiativeWeight": 3,
+  "FoodPerResident": 2,
+  "InitialGrowthCost": 10,
+  "GrowthCostStep": 4,
+  "BaseFoodCapacity": 24,
+  "GranaryCapacityBonus": 5,
+  "BasePopulationCapacity": 4,
+  "HousingBonus": 2,
+  "StartYear": -10000,
+  "YearsPerTurn": 100
+}

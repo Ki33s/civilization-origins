@@ -1,0 +1,307 @@
+{
+    "version": "decor-1",
+    "seed": 1090038158,
+    "minScale": 0.5,
+    "maxScale": 1.5,
+    "biomes": [
+        {
+            "terrain": "Ocean",
+            "models": []
+        },
+        {
+            "terrain": "Coast",
+            "models": [
+                {
+                    "model": "dry_grass",
+                    "min": 4,
+                    "max": 4
+                },
+                {
+                    "model": "stone_Rounded",
+                    "min": 2,
+                    "max": 2
+                },
+                {
+                    "model": "shell",
+                    "min": 3,
+                    "max": 3
+                },
+                {
+                    "model": "twig",
+                    "min": 1,
+                    "max": 1
+                }
+            ]
+        },
+        {
+            "terrain": "Grass",
+            "models": [
+                {
+                    "model": "grass",
+                    "min": 8,
+                    "max": 8
+                },
+                {
+                    "model": "flower_0",
+                    "min": 2,
+                    "max": 2
+                },
+                {
+                    "model": "flower_1",
+                    "min": 2,
+                    "max": 2
+                },
+                {
+                    "model": "stone_Rounded",
+                    "min": 1,
+                    "max": 1
+                },
+                {
+                    "model": "stone_FlatShale",
+                    "min": 1,
+                    "max": 1
+                },
+                {
+                    "model": "stump",
+                    "min": 1,
+                    "max": 1
+                }
+            ]
+        },
+        {
+            "terrain": "Forest",
+            "models": [
+                {
+                    "model": "oak_1",
+                    "min": 1,
+                    "max": 1
+                },
+                {
+                    "model": "birch_1",
+                    "min": 2,
+                    "max": 2
+                },
+                {
+                    "model": "pine_1",
+                    "min": 1,
+                    "max": 1
+                },
+                {
+                    "model": "grass",
+                    "min": 5,
+                    "max": 5
+                },
+                {
+                    "model": "flower_0",
+                    "min": 2,
+                    "max": 2
+                },
+                {
+                    "model": "fern",
+                    "min": 2,
+                    "max": 2
+                },
+                {
+                    "model": "stone_Rounded",
+                    "min": 2,
+                    "max": 2
+                },
+                {
+                    "model": "stump",
+                    "min": 1,
+                    "max": 1
+                },
+                {
+                    "model": "fallen_log",
+                    "min": 1,
+                    "max": 1
+                },
+                {
+                    "model": "mushrooms",
+                    "min": 1,
+                    "max": 1
+                }
+            ]
+        },
+        {
+            "terrain": "Hills",
+            "models": [
+                {
+                    "model": "grass",
+                    "min": 5,
+                    "max": 5
+                },
+                {
+                    "model": "flower_2",
+                    "min": 2,
+                    "max": 2
+                },
+                {
+                    "model": "outcrop_Angular",
+                    "min": 3,
+                    "max": 3
+                },
+                {
+                    "model": "stone_Granite",
+                    "min": 2,
+                    "max": 2
+                },
+                {
+                    "model": "shrub",
+                    "min": 1,
+                    "max": 1
+                }
+            ]
+        },
+        {
+            "terrain": "Mountain",
+            "models": [
+                {
+                    "model": "dry_grass",
+                    "min": 3,
+                    "max": 3
+                },
+                {
+                    "model": "stone_Angular",
+                    "min": 3,
+                    "max": 3
+                },
+                {
+                    "model": "outcrop_Granite",
+                    "min": 2,
+                    "max": 2
+                }
+            ]
+        },
+        {
+            "terrain": "Desert",
+            "models": [
+                {
+                    "model": "cactus_0",
+                    "min": 4,
+                    "max": 4
+                },
+                {
+                    "model": "cactus_1",
+                    "min": 4,
+                    "max": 4
+                },
+                {
+                    "model": "cactus_2",
+                    "min": 4,
+                    "max": 4
+                },
+                {
+                    "model": "stone_Granite",
+                    "min": 2,
+                    "max": 2
+                },
+                {
+                    "model": "dry_shrub",
+                    "min": 1,
+                    "max": 1
+                },
+                {
+                    "model": "twig",
+                    "min": 1,
+                    "max": 1
+                }
+            ]
+        },
+        {
+            "terrain": "Plains",
+            "models": [
+                {
+                    "model": "dry_grass",
+                    "min": 8,
+                    "max": 8
+                },
+                {
+                    "model": "seed_heads",
+                    "min": 3,
+                    "max": 3
+                },
+                {
+                    "model": "stone_FlatShale",
+                    "min": 2,
+                    "max": 2
+                },
+                {
+                    "model": "twig",
+                    "min": 1,
+                    "max": 1
+                }
+            ]
+        },
+        {
+            "terrain": "Swamp",
+            "models": [
+                {
+                    "model": "reeds",
+                    "min": 6,
+                    "max": 6
+                },
+                {
+                    "model": "grass",
+                    "min": 3,
+                    "max": 3
+                },
+                {
+                    "model": "moss",
+                    "min": 2,
+                    "max": 2
+                },
+                {
+                    "model": "stone_Rounded",
+                    "min": 2,
+                    "max": 2
+                },
+                {
+                    "model": "twig",
+                    "min": 1,
+                    "max": 1
+                },
+                {
+                    "model": "stump",
+                    "min": 1,
+                    "max": 1
+                }
+            ]
+        },
+        {
+            "terrain": "Tundra",
+            "models": [
+                {
+                    "model": "snow_0",
+                    "min": 12,
+                    "max": 12
+                },
+                {
+                    "model": "snow_1",
+                    "min": 12,
+                    "max": 12
+                },
+                {
+                    "model": "snow_2",
+                    "min": 12,
+                    "max": 12
+                },
+                {
+                    "model": "lichen",
+                    "min": 4,
+                    "max": 4
+                },
+                {
+                    "model": "dry_grass",
+                    "min": 3,
+                    "max": 3
+                },
+                {
+                    "model": "stone_Granite",
+                    "min": 2,
+                    "max": 2
+                }
+            ]
+        }
+    ]
+}

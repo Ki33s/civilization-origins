@@ -1,0 +1,555 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c82b207b9b1cc1b4a9d641af465e029c, type: 3}
+  m_Name: DecorModelCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::Origins.DecorModelCatalog
+  models:
+  - id: oak_1
+    label: "\u0414\u0443\u0431 1"
+    category: "\u0414\u0435\u0440\u0435\u0432\u044C\u044F"
+    large: 1
+    prefab: {fileID: 9121975858997341019, guid: 80dd4571158cfdf499723243907ff64b, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 67396ed8e3a9fbe4b9ecb8d9e57d014f, type: 2}
+    - {fileID: 4300000, guid: 9ab42b88d6387314696d560b832d45cb, type: 2}
+    far:
+    - {fileID: 4300000, guid: c6b561b19a921e4458c9471b35871e22, type: 2}
+    - {fileID: 4300000, guid: 4e0b6976e57e0074085fd03185b1839e, type: 2}
+    triangles: 31236
+  - id: oak_2
+    label: "\u0414\u0443\u0431 2"
+    category: "\u0414\u0435\u0440\u0435\u0432\u044C\u044F"
+    large: 1
+    prefab: {fileID: 809390889900054729, guid: e71722be00873424abb253c7b131ada6, type: 3}
+    medium:
+    - {fileID: 4300000, guid: aae3dae18784c434cafaf2bd081973e3, type: 2}
+    - {fileID: 4300000, guid: efb0e55685a3aa448996e4b8f3c05429, type: 2}
+    far:
+    - {fileID: 4300000, guid: a1d99808d8a753740b6bc5587f5d5886, type: 2}
+    - {fileID: 4300000, guid: 7f002901c51bc9f4f82e1315da5a682f, type: 2}
+    triangles: 31236
+  - id: oak_3
+    label: "\u0414\u0443\u0431 3"
+    category: "\u0414\u0435\u0440\u0435\u0432\u044C\u044F"
+    large: 1
+    prefab: {fileID: 2021057059261303640, guid: cd10025a7ba806d49b0041781b5295dc, type: 3}
+    medium:
+    - {fileID: 4300000, guid: fd4ae6176e6e2e145aaa376422ec392c, type: 2}
+    - {fileID: 4300000, guid: 960833d43262e1b4ba1f21711a2648dd, type: 2}
+    far:
+    - {fileID: 4300000, guid: c05827e0861ab2f44ad9ff765bc32810, type: 2}
+    - {fileID: 4300000, guid: e3b74a6c4343c734c821800e65bf1790, type: 2}
+    triangles: 31236
+  - id: birch_1
+    label: "\u0411\u0435\u0440\u0451\u0437\u0430 1"
+    category: "\u0414\u0435\u0440\u0435\u0432\u044C\u044F"
+    large: 1
+    prefab: {fileID: 231138204984274246, guid: 406cd8109f2917b438ab676e2fd50e7a, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 6c8c4edd8acb2a04d95e8316b80ee5c4, type: 2}
+    - {fileID: 4300000, guid: 2d81309c5526c304289734383683aeab, type: 2}
+    far:
+    - {fileID: 4300000, guid: 5d73b8ede49da5148bdf513284918ba8, type: 2}
+    - {fileID: 4300000, guid: f1938445cd3538a43bb49b8ebf7c858e, type: 2}
+    triangles: 31292
+  - id: birch_2
+    label: "\u0411\u0435\u0440\u0451\u0437\u0430 2"
+    category: "\u0414\u0435\u0440\u0435\u0432\u044C\u044F"
+    large: 1
+    prefab: {fileID: 9113405096332638284, guid: fac8324c1bb52ed498af8f3ddad0b2f0, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 606c4bc814e710844821e2886bb39542, type: 2}
+    - {fileID: 4300000, guid: c1a351e871cb93645ad64d145c3b1578, type: 2}
+    far:
+    - {fileID: 4300000, guid: e490e31642f663d48ae05b345c01b5e5, type: 2}
+    - {fileID: 4300000, guid: 3b1c0a5e63b9e5744871837c8ff5eff7, type: 2}
+    triangles: 31292
+  - id: birch_3
+    label: "\u0411\u0435\u0440\u0451\u0437\u0430 3"
+    category: "\u0414\u0435\u0440\u0435\u0432\u044C\u044F"
+    large: 1
+    prefab: {fileID: 2908330353079045252, guid: 350c300a326157a49b28a25c8deab519, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 66a5a34159b2b6547a6326624dbea2d2, type: 2}
+    - {fileID: 4300000, guid: fe361ac781933334c920b090797bd821, type: 2}
+    far:
+    - {fileID: 4300000, guid: 6d99a6df30cc9124dba7e7571f835574, type: 2}
+    - {fileID: 4300000, guid: 5243c9f9cd419b84d820c0baad866cef, type: 2}
+    triangles: 31292
+  - id: pine_1
+    label: "\u0421\u043E\u0441\u043D\u0430 1"
+    category: "\u0414\u0435\u0440\u0435\u0432\u044C\u044F"
+    large: 1
+    prefab: {fileID: 8277684379935252562, guid: a982fb27c366a56449c78ca41da5fb7a, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 53e3e070e8129e04b91fdcb3df18e571, type: 2}
+    - {fileID: 4300000, guid: 46f4b79b08f17954ab013eb79f9378dd, type: 2}
+    far:
+    - {fileID: 4300000, guid: 09c5442d469eec746aee96d5d0bc69eb, type: 2}
+    - {fileID: 4300000, guid: 849a528f5034e12499096101fbf92636, type: 2}
+    triangles: 78586
+  - id: pine_2
+    label: "\u0421\u043E\u0441\u043D\u0430 2"
+    category: "\u0414\u0435\u0440\u0435\u0432\u044C\u044F"
+    large: 1
+    prefab: {fileID: 2110521806363289406, guid: 071eba567766c9f47be9bc98cd6ebf28, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 74a996aade8cbda41b39146b636253a8, type: 2}
+    - {fileID: 4300000, guid: 5e6868218a50e2e4daa523b8c702dee3, type: 2}
+    far:
+    - {fileID: 4300000, guid: 2dbafaac340de9e45b3b6f98fd746579, type: 2}
+    - {fileID: 4300000, guid: 902296cb0ccd9934d99415a5b1c7ccfc, type: 2}
+    triangles: 78586
+  - id: pine_3
+    label: "\u0421\u043E\u0441\u043D\u0430 3"
+    category: "\u0414\u0435\u0440\u0435\u0432\u044C\u044F"
+    large: 1
+    prefab: {fileID: 8198200401841433121, guid: daf9310e7054bed4899e69fb0288fe58, type: 3}
+    medium:
+    - {fileID: 4300000, guid: dd9d61ec31e42b54d91553cc9f7bfe00, type: 2}
+    - {fileID: 4300000, guid: f8377e00e2f25364887eb7d34ed0227f, type: 2}
+    far:
+    - {fileID: 4300000, guid: 0253f0b08c0086c4fa974b7a3fd9bc35, type: 2}
+    - {fileID: 4300000, guid: 843a3ef6afd98744bb3aa1c2267cee2d, type: 2}
+    triangles: 78586
+  - id: snow_0
+    label: "\u0417\u0430\u0441\u043D\u0435\u0436\u0435\u043D\u043D\u0430\u044F \u0435\u043B\u044C"
+    category: "\u0414\u0435\u0440\u0435\u0432\u044C\u044F"
+    large: 1
+    prefab: {fileID: 954013858302852288, guid: 52c638a919953de40ba4f4b2ea2be58a, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 5dafb0998760a3841b7befb15389d1eb, type: 2}
+    - {fileID: 4300000, guid: 52583bb7f7930714cbc66dd18a04ebbe, type: 2}
+    - {fileID: 4300000, guid: 45184071930806b45b5cb3de61ef5131, type: 2}
+    far:
+    - {fileID: 4300000, guid: 63fa5a3380868d04e9f7e2bcb0d6f9b8, type: 2}
+    - {fileID: 4300000, guid: aa84a956492b16e4ab4da075e4e5fb68, type: 2}
+    - {fileID: 4300000, guid: cc55728f76055614f9e189e8e51b087e, type: 2}
+    triangles: 43378
+  - id: snow_1
+    label: "\u0417\u0430\u0441\u043D\u0435\u0436\u0435\u043D\u043D\u0430\u044F \u0441\u043E\u0441\u043D\u0430"
+    category: "\u0414\u0435\u0440\u0435\u0432\u044C\u044F"
+    large: 1
+    prefab: {fileID: 6818516259735503900, guid: 0f050f0edc550f54eaabf3b9b681f3f6, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 7be9c48523ba5a14bb44feea9c151643, type: 2}
+    - {fileID: 4300000, guid: 31f5ef4810a892e4388a5c0f13666f8f, type: 2}
+    - {fileID: 4300000, guid: 719d7133613b3f0429e15ff0e267cd94, type: 2}
+    far:
+    - {fileID: 4300000, guid: f3b9ff4a03f17134f9ee04c6fc1c250d, type: 2}
+    - {fileID: 4300000, guid: 866613545eb0e28499987ba27020405b, type: 2}
+    - {fileID: 4300000, guid: eb9e6b761ca2b8947aa2a0f8e0c5de38, type: 2}
+    triangles: 43378
+  - id: snow_2
+    label: "\u0417\u0430\u0441\u043D\u0435\u0436\u0435\u043D\u043D\u0430\u044F \u043F\u0438\u0445\u0442\u0430"
+    category: "\u0414\u0435\u0440\u0435\u0432\u044C\u044F"
+    large: 1
+    prefab: {fileID: 4866895952134077020, guid: 809ec4907be454143af83bd9c1a2638b, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 11b2115c81436834e92f990b06bb3f04, type: 2}
+    - {fileID: 4300000, guid: 8421119880128d54cb28c246ebfabb24, type: 2}
+    - {fileID: 4300000, guid: 79ac3669464a821448de3389bd4db252, type: 2}
+    far:
+    - {fileID: 4300000, guid: 6dd29f5778b3d694da60de2f7119d3bb, type: 2}
+    - {fileID: 4300000, guid: b54dbf797496878439cf5f39ea3dc1ff, type: 2}
+    - {fileID: 4300000, guid: 0cf681f3852274148b852bae05a13c01, type: 2}
+    triangles: 43378
+  - id: grass
+    label: "\u041F\u0443\u0447\u043E\u043A \u0437\u0435\u043B\u0451\u043D\u043E\u0439 \u0442\u0440\u0430\u0432\u044B"
+    category: "\u0422\u0440\u0430\u0432\u0430"
+    large: 0
+    prefab: {fileID: 6387558150965807872, guid: 1214b233bf8c8314baf6e8bb850fae46, type: 3}
+    medium:
+    - {fileID: 4300000, guid: f174e0c70d9b86f4292c4dd532cce19e, type: 2}
+    far:
+    - {fileID: 4300000, guid: 818f67c5b02f4aa42893ca96b1d8fc4f, type: 2}
+    triangles: 70
+  - id: dry_grass
+    label: "\u041F\u0443\u0447\u043E\u043A \u0441\u0443\u0445\u043E\u0439 \u0442\u0440\u0430\u0432\u044B"
+    category: "\u0422\u0440\u0430\u0432\u0430"
+    large: 0
+    prefab: {fileID: 2952825467197396076, guid: 023570e8a660b5242a0d929ef09a2063, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 69650260cfa93aa4e92f930adef48ad5, type: 2}
+    far:
+    - {fileID: 4300000, guid: 4ea769dd336b05340b7ad6ae4275cdf6, type: 2}
+    triangles: 70
+  - id: flower_0
+    label: "\u0411\u0435\u043B\u044B\u0435 \u0446\u0432\u0435\u0442\u044B"
+    category: "\u0426\u0432\u0435\u0442\u044B"
+    large: 0
+    prefab: {fileID: 7666454759441186541, guid: 7130d68ef9dcc3e4887aff76f9ba4392, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 3ccf33ff636def540a7298225f6bb536, type: 2}
+    far:
+    - {fileID: 4300000, guid: afaa08d5ff83857489016ec67ef49b6e, type: 2}
+    triangles: 306
+  - id: flower_1
+    label: "\u0421\u0438\u0440\u0435\u043D\u0435\u0432\u044B\u0435 \u0446\u0432\u0435\u0442\u044B"
+    category: "\u0426\u0432\u0435\u0442\u044B"
+    large: 0
+    prefab: {fileID: 842452334939701428, guid: 0f6edd0d8225cc54da9f92af0a1da601, type: 3}
+    medium:
+    - {fileID: 4300000, guid: fb92a6bcd4a2e3447b1e6c71020417c3, type: 2}
+    far:
+    - {fileID: 4300000, guid: 76af772ff1bedd7448429a7368b85413, type: 2}
+    triangles: 306
+  - id: flower_2
+    label: "\u0416\u0451\u043B\u0442\u044B\u0435 \u0446\u0432\u0435\u0442\u044B"
+    category: "\u0426\u0432\u0435\u0442\u044B"
+    large: 0
+    prefab: {fileID: 8067516404859057038, guid: ee8bf788c1581414998a012833cc4bc0, type: 3}
+    medium:
+    - {fileID: 4300000, guid: d8d861bb136cb254a93c7761c1052463, type: 2}
+    far:
+    - {fileID: 4300000, guid: 0bb092caeba0f0d40adba6efaaa25c66, type: 2}
+    triangles: 306
+  - id: flower_3
+    label: "\u0413\u043E\u043B\u0443\u0431\u044B\u0435 \u0446\u0432\u0435\u0442\u044B"
+    category: "\u0426\u0432\u0435\u0442\u044B"
+    large: 0
+    prefab: {fileID: 8697526306894130820, guid: dc83ce5a2d1ab2d4b893fb9ab45362ea, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 960450845af8c514c8476bb0018aa987, type: 2}
+    far:
+    - {fileID: 4300000, guid: a3461e278244e8e45a999efdf2fdb80e, type: 2}
+    triangles: 306
+  - id: flower_4
+    label: "\u0420\u043E\u0437\u043E\u0432\u044B\u0435 \u0446\u0432\u0435\u0442\u044B"
+    category: "\u0426\u0432\u0435\u0442\u044B"
+    large: 0
+    prefab: {fileID: 2175518495249362320, guid: 6e4c5c70debf08a4caedd7c2a40927d5, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 91de5bc3a45845349942b854359b6bbc, type: 2}
+    far:
+    - {fileID: 4300000, guid: 8ddf43f19f09aef42b9d51a75adb9004, type: 2}
+    triangles: 306
+  - id: stone_Rounded
+    label: "\u041A\u0430\u043C\u0435\u043D\u044C \xB7 \u041E\u043A\u0440\u0443\u0433\u043B\u044B\u0439"
+    category: "\u041A\u0430\u043C\u043D\u0438"
+    large: 0
+    prefab: {fileID: 5379035331302910705, guid: 8484714a2c8aa064fbd212a6c772894d, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 570ebdfd91fa34647b78e98ee6f8fa18, type: 2}
+    far:
+    - {fileID: 4300000, guid: 4f00d83abf49de34aa8f57a6b7c7dc9b, type: 2}
+    triangles: 1280
+  - id: outcrop_Rounded
+    label: "\u0421\u043A\u0430\u043B\u0430 \xB7 \u041E\u043A\u0440\u0443\u0433\u043B\u044B\u0439"
+    category: "\u041A\u0440\u0443\u043F\u043D\u044B\u0435 \u043A\u0430\u043C\u043D\u0438"
+    large: 1
+    prefab: {fileID: 5979432284518438531, guid: 84bec15a5b528c247981d2f496f061a9, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 99897eacf70c83f47b72c84c3958a017, type: 2}
+    far:
+    - {fileID: 4300000, guid: a95761b420e5e97479ef5ea36fd3fee4, type: 2}
+    triangles: 1280
+  - id: stone_FlatShale
+    label: "\u041A\u0430\u043C\u0435\u043D\u044C \xB7 \u041F\u043B\u043E\u0441\u043A\u0438\u0439"
+    category: "\u041A\u0430\u043C\u043D\u0438"
+    large: 0
+    prefab: {fileID: 3358441815738338620, guid: 11aadee25de7e7d479f9fcbeddbf44e9, type: 3}
+    medium:
+    - {fileID: 4300000, guid: edf4f235107920d43be4c2aee3d6d6cd, type: 2}
+    far:
+    - {fileID: 4300000, guid: 56c0670a1b5d5804fbc4f9c80ca0ba61, type: 2}
+    triangles: 1280
+  - id: outcrop_FlatShale
+    label: "\u0421\u043A\u0430\u043B\u0430 \xB7 \u041F\u043B\u043E\u0441\u043A\u0438\u0439"
+    category: "\u041A\u0440\u0443\u043F\u043D\u044B\u0435 \u043A\u0430\u043C\u043D\u0438"
+    large: 1
+    prefab: {fileID: 830864940004278551, guid: ea177fb0b227010418436d88bfc7fc4c, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 5917491c92ca3c54786bcbf5fb650b33, type: 2}
+    far:
+    - {fileID: 4300000, guid: 2e4447e7d85a65b4cbe03b22b337a829, type: 2}
+    triangles: 1280
+  - id: stone_Elongated
+    label: "\u041A\u0430\u043C\u0435\u043D\u044C \xB7 \u0412\u044B\u0442\u044F\u043D\u0443\u0442\u044B\u0439"
+    category: "\u041A\u0430\u043C\u043D\u0438"
+    large: 0
+    prefab: {fileID: 1353390560971385980, guid: 711a4d844fb3e494cace118c4cd40d0e, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 96b5448ab22bc75468c0ca7cbd28d500, type: 2}
+    far:
+    - {fileID: 4300000, guid: b2c8d0f45563fad4fb32874cf0c101d1, type: 2}
+    triangles: 1280
+  - id: outcrop_Elongated
+    label: "\u0421\u043A\u0430\u043B\u0430 \xB7 \u0412\u044B\u0442\u044F\u043D\u0443\u0442\u044B\u0439"
+    category: "\u041A\u0440\u0443\u043F\u043D\u044B\u0435 \u043A\u0430\u043C\u043D\u0438"
+    large: 1
+    prefab: {fileID: 7738794233157438604, guid: 97240eceddb06954db369a65cd696893, type: 3}
+    medium:
+    - {fileID: 4300000, guid: cc41351bfe687c349bd7cb8a6beda6ad, type: 2}
+    far:
+    - {fileID: 4300000, guid: d5c5bd288c39a7845861a142ac6dfcce, type: 2}
+    triangles: 1280
+  - id: stone_Angular
+    label: "\u041A\u0430\u043C\u0435\u043D\u044C \xB7 \u0423\u0433\u043B\u043E\u0432\u0430\u0442\u044B\u0439"
+    category: "\u041A\u0430\u043C\u043D\u0438"
+    large: 0
+    prefab: {fileID: 1132177934423261201, guid: 6896acd593866484d887961d6b4b063a, type: 3}
+    medium:
+    - {fileID: 4300000, guid: c7fe204497f8a6d47a5b312fcf617243, type: 2}
+    far:
+    - {fileID: 4300000, guid: 9aee21bb1428e0f419a771f14b1826b1, type: 2}
+    triangles: 119
+  - id: outcrop_Angular
+    label: "\u0421\u043A\u0430\u043B\u0430 \xB7 \u0423\u0433\u043B\u043E\u0432\u0430\u0442\u044B\u0439"
+    category: "\u041A\u0440\u0443\u043F\u043D\u044B\u0435 \u043A\u0430\u043C\u043D\u0438"
+    large: 1
+    prefab: {fileID: 8247781677301794102, guid: a3e02f241c54ce74b820f873328219f4, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 18310d90dba44e04b92ffdf04b81a747, type: 2}
+    far:
+    - {fileID: 4300000, guid: 0b5fdd04ca0a1214f8bb61dbf1652348, type: 2}
+    triangles: 119
+  - id: stone_Cluster
+    label: "\u041A\u0430\u043C\u0435\u043D\u044C \xB7 \u0413\u0440\u0443\u043F\u043F\u0430"
+    category: "\u041A\u0430\u043C\u043D\u0438"
+    large: 0
+    prefab: {fileID: 8356779759646826839, guid: e5b88d7fc3308bb4ab697351e11e28ca, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 92fb7fd0f7ccc22428d194867587524c, type: 2}
+    far:
+    - {fileID: 4300000, guid: 71c20a3f703756847a253b1ac293bb26, type: 2}
+    triangles: 2816
+  - id: outcrop_Cluster
+    label: "\u0421\u043A\u0430\u043B\u0430 \xB7 \u0413\u0440\u0443\u043F\u043F\u0430"
+    category: "\u041A\u0440\u0443\u043F\u043D\u044B\u0435 \u043A\u0430\u043C\u043D\u0438"
+    large: 1
+    prefab: {fileID: 2883445518965893429, guid: c7ffe1e1ff276844789827c2db977999, type: 3}
+    medium:
+    - {fileID: 4300000, guid: db10825af404716489572e5753f58876, type: 2}
+    far:
+    - {fileID: 4300000, guid: f7efcc9ba07a9314497e8d4320d6da18, type: 2}
+    triangles: 2816
+  - id: stone_SplitBasalt
+    label: "\u041A\u0430\u043C\u0435\u043D\u044C \xB7 \u0411\u0430\u0437\u0430\u043B\u044C\u0442"
+    category: "\u041A\u0430\u043C\u043D\u0438"
+    large: 0
+    prefab: {fileID: 3818483296706511134, guid: 8b8c1204b73dc654c98cfa8a4f974d74, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 2a634fad13b1c9c418df44dd54244894, type: 2}
+    far:
+    - {fileID: 4300000, guid: 57d966ac208ef404a9af341be6c6eeaf, type: 2}
+    triangles: 119
+  - id: outcrop_SplitBasalt
+    label: "\u0421\u043A\u0430\u043B\u0430 \xB7 \u0411\u0430\u0437\u0430\u043B\u044C\u0442"
+    category: "\u041A\u0440\u0443\u043F\u043D\u044B\u0435 \u043A\u0430\u043C\u043D\u0438"
+    large: 1
+    prefab: {fileID: 6307718804156039240, guid: 59a891443286a1a4c87ffb076c158113, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 905f2f5cee0b52749bcb4d390533aadb, type: 2}
+    far:
+    - {fileID: 4300000, guid: 16b72f218440eb943b2cdc817641d37f, type: 2}
+    triangles: 119
+  - id: stone_LayeredSlate
+    label: "\u041A\u0430\u043C\u0435\u043D\u044C \xB7 \u0421\u043B\u043E\u0438\u0441\u0442\u044B\u0439"
+    category: "\u041A\u0430\u043C\u043D\u0438"
+    large: 0
+    prefab: {fileID: 6330747214212687658, guid: deca60bc85156874fa10b55ce2a3c6bc, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 87426280f1650104ca331f3328d129bd, type: 2}
+    far:
+    - {fileID: 4300000, guid: 3440b2bb4f049a54eab39b0e7687effe, type: 2}
+    triangles: 1952
+  - id: outcrop_LayeredSlate
+    label: "\u0421\u043A\u0430\u043B\u0430 \xB7 \u0421\u043B\u043E\u0438\u0441\u0442\u044B\u0439"
+    category: "\u041A\u0440\u0443\u043F\u043D\u044B\u0435 \u043A\u0430\u043C\u043D\u0438"
+    large: 1
+    prefab: {fileID: 7928751448541373940, guid: 3a31d38ef1464274cbd37b41d077908e, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 8113b3fdc0af65448bbb12824d72867c, type: 2}
+    far:
+    - {fileID: 4300000, guid: 34b00404e014d4d48beb25b7ef0ab94e, type: 2}
+    triangles: 1952
+  - id: stone_Granite
+    label: "\u041A\u0430\u043C\u0435\u043D\u044C \xB7 \u0413\u0440\u0430\u043D\u0438\u0442"
+    category: "\u041A\u0430\u043C\u043D\u0438"
+    large: 0
+    prefab: {fileID: 1074377238834770410, guid: 0e00e66b206a40140b05ec42c59f351a, type: 3}
+    medium:
+    - {fileID: 4300000, guid: dfd64d17266b7b84d99b907ecc3ba199, type: 2}
+    far:
+    - {fileID: 4300000, guid: 011fea0aa3e8a6949a8442d5153ecd69, type: 2}
+    triangles: 119
+  - id: outcrop_Granite
+    label: "\u0421\u043A\u0430\u043B\u0430 \xB7 \u0413\u0440\u0430\u043D\u0438\u0442"
+    category: "\u041A\u0440\u0443\u043F\u043D\u044B\u0435 \u043A\u0430\u043C\u043D\u0438"
+    large: 1
+    prefab: {fileID: 5135407978787885220, guid: 2e8a8c1f09edf284fb573912d193581d, type: 3}
+    medium:
+    - {fileID: 4300000, guid: f557267f6826b4148b0ffb55190afdfd, type: 2}
+    far:
+    - {fileID: 4300000, guid: e4b765b201718a74a803f041e1e19133, type: 2}
+    triangles: 119
+  - id: cactus_0
+    label: "\u0421\u0430\u0433\u0443\u0430\u0440\u043E"
+    category: "\u041A\u0430\u043A\u0442\u0443\u0441\u044B"
+    large: 1
+    prefab: {fileID: 2652209883606856308, guid: 5242a38cf8dafa64da342e75fd3a8f90, type: 3}
+    medium:
+    - {fileID: 4300000, guid: e442e9ff01a88f241ae22b18d26245af, type: 2}
+    far:
+    - {fileID: 4300000, guid: 5752ae74bf2702f4d8245057b033f297, type: 2}
+    triangles: 4604
+  - id: cactus_1
+    label: "\u0411\u043E\u0447\u043A\u043E\u0432\u0438\u0434\u043D\u044B\u0439 \u043A\u0430\u043A\u0442\u0443\u0441"
+    category: "\u041A\u0430\u043A\u0442\u0443\u0441\u044B"
+    large: 1
+    prefab: {fileID: 4077356111941680730, guid: 912219a9469ad9c49b01c8ab650cb5c9, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 94dd0c43f4d0b0a4b92dd991f1e1c194, type: 2}
+    far:
+    - {fileID: 4300000, guid: 2aca1cf42d4a70e469137279563d991b, type: 2}
+    triangles: 2704
+  - id: cactus_2
+    label: "\u041E\u043F\u0443\u043D\u0446\u0438\u044F"
+    category: "\u041A\u0430\u043A\u0442\u0443\u0441\u044B"
+    large: 1
+    prefab: {fileID: 3683764713003901320, guid: 3c21a10ec4b8d59408fab6089c7ef7fd, type: 3}
+    medium:
+    - {fileID: 4300000, guid: fe1a342a928d5ae45bb993dae0bf693f, type: 2}
+    far:
+    - {fileID: 4300000, guid: 6b4332b7ef4593b40a2a179ded5c963a, type: 2}
+    triangles: 8106
+  - id: clover
+    label: "\u041A\u043B\u0435\u0432\u0435\u0440"
+    category: "\u0420\u0430\u0441\u0442\u0435\u043D\u0438\u044F \u0438 \u0434\u0435\u0442\u0430\u043B\u0438"
+    large: 0
+    prefab: {fileID: 7827835610533938648, guid: 40167019d0305a2428a86b04df35928d, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 2bbcdcc46df46b54fb146c290979b918, type: 2}
+    far:
+    - {fileID: 4300000, guid: b7548406cb99fd84d81f19a903278616, type: 2}
+    triangles: 3192
+  - id: shrub
+    label: "\u041B\u0438\u0441\u0442\u0432\u0435\u043D\u043D\u044B\u0439 \u043A\u0443\u0441\u0442"
+    category: "\u0420\u0430\u0441\u0442\u0435\u043D\u0438\u044F \u0438 \u0434\u0435\u0442\u0430\u043B\u0438"
+    large: 0
+    prefab: {fileID: 2698577164628985276, guid: 623f891276458ae45a65de376ef9301f, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 19cddc6f8761e284fa2dea4c1989c3c6, type: 2}
+    far:
+    - {fileID: 4300000, guid: c05f3c555d8146b43b34280608b50108, type: 2}
+    triangles: 17776
+  - id: dry_shrub
+    label: "\u0421\u0443\u0445\u043E\u0439 \u043A\u0443\u0441\u0442"
+    category: "\u0420\u0430\u0441\u0442\u0435\u043D\u0438\u044F \u0438 \u0434\u0435\u0442\u0430\u043B\u0438"
+    large: 0
+    prefab: {fileID: 5526654136853656790, guid: 2a979f624d70e334d8d46d33eafc3fcf, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 9d954c99474cd024abb42293514c26fc, type: 2}
+    far:
+    - {fileID: 4300000, guid: 7af878b9e210f10428722b6f837230a2, type: 2}
+    triangles: 17776
+  - id: seed_heads
+    label: "\u0414\u0438\u043A\u0438\u0435 \u043A\u043E\u043B\u043E\u0441\u043A\u0438"
+    category: "\u0420\u0430\u0441\u0442\u0435\u043D\u0438\u044F \u0438 \u0434\u0435\u0442\u0430\u043B\u0438"
+    large: 0
+    prefab: {fileID: 7362537919735705274, guid: 4dc9db0b51f3d50478c410a076a3a26f, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 3ef210442c51d914890d8435c933f4c9, type: 2}
+    far:
+    - {fileID: 4300000, guid: 211ff9642aeea4f4fbdc4d733b8021d6, type: 2}
+    triangles: 3816
+  - id: twig
+    label: "\u0421\u0443\u0445\u0430\u044F \u0432\u0435\u0442\u043A\u0430"
+    category: "\u0420\u0430\u0441\u0442\u0435\u043D\u0438\u044F \u0438 \u0434\u0435\u0442\u0430\u043B\u0438"
+    large: 0
+    prefab: {fileID: 787654285883376570, guid: f51614076c9befa439dc70fb9401e389, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 6ce7641831cb60b4fafd79d17c629234, type: 2}
+    far:
+    - {fileID: 4300000, guid: d869fc33b8a92e24fbfec9cef4c68416, type: 2}
+    triangles: 222
+  - id: shell
+    label: "\u0420\u0430\u043A\u0443\u0448\u043A\u0430"
+    category: "\u0420\u0430\u0441\u0442\u0435\u043D\u0438\u044F \u0438 \u0434\u0435\u0442\u0430\u043B\u0438"
+    large: 0
+    prefab: {fileID: 5483978438176928278, guid: d8f78ca2bbd52ec4ba6c3719b2bc9519, type: 3}
+    medium:
+    - {fileID: 4300000, guid: ac6411ce3d7862945900b787f350dfcb, type: 2}
+    far:
+    - {fileID: 4300000, guid: 2d1bb3e9611b1c042b19d7a2f12f60dc, type: 2}
+    triangles: 725
+  - id: fern
+    label: "\u041F\u0430\u043F\u043E\u0440\u043E\u0442\u043D\u0438\u043A"
+    category: "\u041B\u0435\u0441\u043D\u043E\u0439 \u0434\u0435\u043A\u043E\u0440"
+    large: 0
+    prefab: {fileID: 2492584457960621531, guid: 4231c382e440bc14884f28cf9a2796a3, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 0c0c6de1db1b2974db477ffee2f52875, type: 2}
+    far:
+    - {fileID: 4300000, guid: 6430839ef7605ec4d9b5e04a956a358b, type: 2}
+    triangles: 2340
+  - id: stump
+    label: "\u041F\u0435\u043D\u044C"
+    category: "\u041B\u0435\u0441\u043D\u043E\u0439 \u0434\u0435\u043A\u043E\u0440"
+    large: 0
+    prefab: {fileID: 7736091591345226664, guid: a66f4f2590c6ce640ace6a2c797f2f46, type: 3}
+    medium:
+    - {fileID: 4300000, guid: c8fc1654be383ce40ab41ebf440e2dd5, type: 2}
+    far:
+    - {fileID: 4300000, guid: e8c4b6e90656ca340874a35b4a38260e, type: 2}
+    triangles: 4980
+  - id: fallen_log
+    label: "\u0423\u043F\u0430\u0432\u0448\u0438\u0439 \u0441\u0442\u0432\u043E\u043B"
+    category: "\u041B\u0435\u0441\u043D\u043E\u0439 \u0434\u0435\u043A\u043E\u0440"
+    large: 0
+    prefab: {fileID: 492766222294301101, guid: 9044143c6ed6962418ace486b772f6f7, type: 3}
+    medium:
+    - {fileID: 4300000, guid: b529799ef5fc15f43855e4fd581e4964, type: 2}
+    far:
+    - {fileID: 4300000, guid: ce37235e68791ba42a8c272c6838def3, type: 2}
+    triangles: 1704
+  - id: mushrooms
+    label: "\u0413\u0440\u0438\u0431\u044B"
+    category: "\u041B\u0435\u0441\u043D\u043E\u0439 \u0434\u0435\u043A\u043E\u0440"
+    large: 0
+    prefab: {fileID: 1061506137925493168, guid: 89a13ec0117926f47aca6c0f719c7802, type: 3}
+    medium:
+    - {fileID: 4300000, guid: a1194667a13b1d64c9e32c918d13175d, type: 2}
+    far:
+    - {fileID: 4300000, guid: acdb17a39d577414a8cc39aec825bc9c, type: 2}
+    triangles: 2448
+  - id: reeds
+    label: "\u041F\u0443\u0447\u043E\u043A \u043A\u0430\u043C\u044B\u0448\u0430"
+    category: "\u0412\u043B\u0430\u0436\u043D\u044B\u0435 \u043C\u0435\u0441\u0442\u0430"
+    large: 0
+    prefab: {fileID: 2037108656087504675, guid: 6705108373248404faefcb2cc53a0df7, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 4f97f31f09928db44becf2e4cda5f1cc, type: 2}
+    far:
+    - {fileID: 4300000, guid: 5ec50e9c006389842af43fb5cb6d5979, type: 2}
+    triangles: 938
+  - id: moss
+    label: "\u041A\u043E\u0447\u043A\u0430 \u043C\u0445\u0430"
+    category: "\u0412\u043B\u0430\u0436\u043D\u044B\u0435 \u043C\u0435\u0441\u0442\u0430"
+    large: 0
+    prefab: {fileID: 4728843421201583077, guid: 9a71249d978dab4488c50b4783a5e5a6, type: 3}
+    medium:
+    - {fileID: 4300000, guid: 093560a36b5cf3a41949f087de7b4eee, type: 2}
+    far:
+    - {fileID: 4300000, guid: 223b560e6b8bb564a9664d36f5680fec, type: 2}
+    triangles: 720
+  - id: lichen
+    label: "\u0421\u043D\u0435\u0436\u043D\u0430\u044F \u043A\u043E\u0447\u043A\u0430"
+    category: "\u0421\u043D\u0435\u0433"
+    large: 0
+    prefab: {fileID: 666587393468560788, guid: 1b6bd4d9117915c40aba009cb6d83a76, type: 3}
+    medium:
+    - {fileID: 4300000, guid: f7d92a4800355ea46a2c9f1b00dc244b, type: 2}
+    far:
+    - {fileID: 4300000, guid: 875a8efd8b025934fb3478cc5c104847, type: 2}
+    triangles: 720

@@ -1,0 +1,18 @@
+Terrain artwork: land 150-250; desert 30-60 including dunes; coast 40-80; ocean 0 small props
+Generation seed: 1090038158
+Hex radius 4.5
+Water: opaque shader, two analytic waves, no CPU mesh updates, no reflection/refraction passes
+Лес: 240 items (0 landforms), 221295 triangles
+Луг: 197 items (0 landforms), 196368 triangles
+Равнина: 154 items (0 landforms), 251010 triangles
+Холмы: 212 items (0 landforms), 437942 triangles
+Горы: 168 items (3 landforms), 398033 triangles
+Пустыня: 53 items (4 landforms), 242291 triangles
+Побережье: 53 items (0 landforms), 41531 triangles
+Океан: 0 items (0 landforms), 3660 triangles
+Болото: 198 items (0 landforms), 175060 triangles
+Тундра: 154 items (0 landforms), 1675503 triangles
+Total: 3642693 triangles
+Fixed orthographic camera: pitch 35.2643897, yaw 45
+Varied models: 1422; scale 0,5023..1,4974; yaw 0,26..359,71
+Stone silhouettes: 8; sizes: small and large; cactus models: 3; snow conifers: 3

@@ -1,0 +1,11 @@
+Ground/water only; native / medium / far triangles. Individual scattered model prefabs are counted separately by TerrainDecorProfile.json.
+Ocean: 0 fixed landforms; triangles 3660 / 3446 / 2900
+Coast: 0 fixed landforms; triangles 9002 / 8483 / 6960
+Grass: 0 fixed landforms; triangles 14208 / 12304 / 6440
+Forest: 0 fixed landforms; triangles 7296 / 6007 / 3784
+Hills: 0 fixed landforms; triangles 14208 / 12506 / 7119
+Mountain: 3 fixed landforms; triangles 16512 / 14916 / 8157
+Desert: 4 fixed landforms; triangles 14208 / 12564 / 7137
+Plains: 0 fixed landforms; triangles 14208 / 12304 / 6440
+Swamp: 0 fixed landforms; triangles 15204 / 13171 / 7013
+Tundra: 0 fixed landforms; triangles 14208 / 12330 / 6526

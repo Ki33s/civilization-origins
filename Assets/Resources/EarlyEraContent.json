@@ -1,0 +1,39 @@
+{
+  "Version": "early-era-demo-3-art-wonders",
+  "Technologies": [
+    {"Id":"stone","Name":"Обработка камня","Description":"Каменоломни и рабочие места мастерской","Cost":9},
+    {"Id":"fire","Name":"Огонь","Description":"Общий очаг: +1 пищи без работника","Cost":9},
+    {"Id":"hunting","Name":"Охота и следопытство","Description":"Освоение дичи и отряды охотников","Cost":9},
+    {"Id":"fishing","Name":"Рыболовство","Description":"Рыбацкие стоянки и хижины","Cost":9},
+    {"Id":"farming","Name":"Земледелие","Description":"Поля на зерне: +3 пищи при работе","Cost":9},
+    {"Id":"pottery","Name":"Гончарное дело","Description":"Амбар: +5 ёмкости; гончарная мастерская","Cost":9,"Requires":"fire"},
+    {"Id":"domestication","Name":"Одомашнивание животных","Description":"Пастухи и пастбища: +2 пищи при работе; соседним работающим клеткам +1 пищи","Cost":12,"Requires":"hunting"},
+    {"Id":"masonry","Name":"Каменная кладка","Description":"Доступ к Пирамидам и каменным сооружениям","Cost":18,"Requires":"stone"},
+    {"Id":"mining","Name":"Горное дело","Description":"Каменотёсы используют кирку с каменным наконечником","Cost":18,"Requires":"stone"},
+    {"Id":"metalworking","Name":"Обработка металлов","Description":"Бронзовые наконечники рабочих инструментов","Cost":24,"Requires":"mining"},
+    {"Id":"irrigation","Name":"Орошение","Description":"Доступ к Висячим садам у реки","Cost":18,"Requires":"farming"}
+  ],
+  "Cultures": [
+    {"Id":"oral","Name":"Устные предания","Description":"Каждый город приносит +1 культуры за ход","Cost":9},
+    {"Id":"caveart","Name":"Наскальная живопись","Description":"Город приносит +1 культуры за каждую соседнюю гору","Cost":9},
+    {"Id":"needle","Name":"Игла","Description":"Работник осваивает меха: +1 производства и +1 золота","Cost":9},
+    {"Id":"monuments","Name":"Монументальные традиции","Description":"Доступ к Стоунхенджу и Пирамидам; нужны дополнительные исследования и подходящая земля","Cost":18,"Requires":"oral"},
+    {"Id":"council","Name":"Совет старейшин","Description":"Позволяет организовать строительство Висячих садов после открытия орошения","Cost":18,"Requires":"oral"}
+  ],
+  "Projects": [
+    {"Id":"scout","Name":"Разведчики","Description":"Отряд с 4 очками движения","Cost":15,"Unit":"Scout"},
+    {"Id":"warrior","Name":"Воины","Description":"Защитный отряд; бой ещё не подключён","Cost":15,"Unit":"Warrior"},
+    {"Id":"hunter","Name":"Охотники","Description":"Отряд с 3 очками движения","Cost":15,"Requires":"hunting","Unit":"Hunter"},
+    {"Id":"slinger","Name":"Пращники","Description":"Первый дальнобойный отряд: праща и камни; 3 очка движения. Бой пока не подключён","Cost":15,"Requires":"stone","Unit":"Slinger"},
+    {"Id":"settler","Name":"Поселенцы","Description":"Новый город; расходуют 1 жителя","Cost":18,"Unit":"Settler"},
+    {"Id":"huts","Name":"Жилые хижины","Description":"+2 вместимости населения; отдельная клетка","Cost":15},
+    {"Id":"workshop","Name":"Каменная мастерская","Description":"Рабочее место: 2 производства","Cost":15,"Requires":"stone"},
+    {"Id":"hearth","Name":"Общий очаг","Description":"Пассивно +1 пищи; отдельная клетка","Cost":15,"Requires":"fire"},
+    {"Id":"granary","Name":"Амбар","Description":"+5 ёмкости пищи, без работника","Cost":15,"Requires":"pottery"},
+    {"Id":"potter","Name":"Гончарная мастерская","Description":"Рабочее место: 1 производство","Cost":12,"Requires":"pottery"},
+    {"Id":"fishhut","Name":"Рыбацкая хижина","Description":"Рабочее место: 2 пищи","Cost":15,"Requires":"fishing"},
+    {"Id":"stonehenge","Name":"Стоунхендж","Description":"Уникальное чудо: +4 культуры и +1 науки в городе. Обработка камня + монументальные традиции; население 2; камень на клетке или рядом","Cost":60,"Wonder":true,"RequiresAll":["stone","monuments"],"MinPopulation":2,"SiteRule":"near-stone","BonusCulture":4,"BonusScience":1},
+    {"Id":"pyramids","Name":"Пирамиды","Description":"Уникальное чудо: +4 производства и +2 науки в городе. Каменная кладка + монументальные традиции; население 3; свободный гекс пустыни","Cost":80,"Wonder":true,"RequiresAll":["masonry","monuments"],"MinPopulation":3,"SiteRule":"desert","BonusProduction":4,"BonusScience":2},
+    {"Id":"gardens","Name":"Висячие сады","Description":"Уникальное чудо: +4 пищи и +2 культуры в городе. Орошение + совет старейшин; население 3; луг или равнина у реки","Cost":75,"Wonder":true,"RequiresAll":["irrigation","council"],"MinPopulation":3,"SiteRule":"river","BonusFood":4,"BonusCulture":2}
+  ]
+}

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 436ddd8d374abae4d975faffb8eeda05, type: 3}
+  m_Name: TerrainArtCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::Origins.TerrainArtCatalog
+  defaultDensity: 0.25
+  minDecorItems: 150
+  maxDecorItems: 250
+  generationSeed: 1090038158
+  hexRadius: 4.5
+  forest: {fileID: 8474884543992798495, guid: 4b5299320d47bb642a5a2072590b4965, type: 3}
+  meadow: {fileID: 159550258111932915, guid: c529ef42fe1a94c4c9558b51dc15e6fe, type: 3}
+  plains: {fileID: 3241120617405783543, guid: 62d503219a34735439cdf7afcb97a8f7, type: 3}
+  hills: {fileID: 9090757027225480263, guid: 942c1ac894d2d8d40adcaf60536b6e78, type: 3}
+  mountain: {fileID: 8010985643380641297, guid: 44ee1509a8f96dd4fbc52452521a17a5, type: 3}
+  desert: {fileID: 8888560846110095813, guid: ef56f4e88f45faf41b755ed2b8f284b0, type: 3}
+  coast: {fileID: 7179460571463511181, guid: e8c39ebe3e698c248b7100031d32c16b, type: 3}
+  ocean: {fileID: 7191133965913643460, guid: 659c854cc9dd0fb499ad9b86998c30ce, type: 3}
+  swamp: {fileID: 1839307216929328674, guid: ddc8afceb2ab4a44bb53adef3ea4c9aa, type: 3}
+  tundra: {fileID: 5944309740732984141, guid: 437203225027f6845932cf0f09e683d4, type: 3}
+  desertMinDecor: 30
+  desertMaxDecor: 60
+  coastMinDecor: 40
+  coastMaxDecor: 80

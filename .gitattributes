@@ -1,0 +1,9 @@
+* text=auto
+*.cs text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.shader text eol=lf
+Assets/Art/**/Meshes/*.asset binary
+Assets/Art/Terrain/Generated/Meshes/Hills25_Props.asset filter=lfs diff=lfs merge=lfs -text
+Assets/Art/Terrain/Generated/Meshes/Mountain_Props.asset filter=lfs diff=lfs merge=lfs -text
+Assets/Art/Terrain/Generated/Meshes/Plains25_Props.asset filter=lfs diff=lfs merge=lfs -text

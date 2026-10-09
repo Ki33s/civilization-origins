@@ -1,0 +1,13 @@
+Forest showcase
+9 hexes (original seven + two density variants)
+86 trees, 9 mesh variants
+3565 grass tufts
+522 flowers
+5 411 972 rendered triangles
+Seed 7816
+Camera: orthographic, pitch 35.2643897, yaw 45
+
+Density comparison (tree, grass tuft, flower, fern, rock, stump, log, mushroom cluster, fallen leaf)
+100%: 11, 460, 65, 18, 11, 3, 2, 8, 230 = 808 items
+50%: 6, 230, 33, 9, 5, 1, 1, 4, 115 = 404 items
+25%: 3, 115, 16, 5, 3, 1, 0, 2, 57 = 202 items
