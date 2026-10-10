@@ -7,7 +7,7 @@ namespace Origins
     public enum UnitKind { Scout, Hunter, Settler, Warrior, Slinger, Trader }
     public sealed class Unit
     {
-        public int Id;
+        public int Id, Owner;
         public UnitKind Kind;
         public Hex Position;
         public readonly List<Hex> Order=new List<Hex>();
@@ -31,7 +31,7 @@ namespace Origins
     }
     public sealed class City
     {
-        public int Id, Population=1, Food, ProductionProgress, BorderCulture, BorderExpansions;
+        public int Id, Owner, Population=1, Food, ProductionProgress, BorderCulture, BorderExpansions;
         public string Name;
         public Hex Position;
         public Choice Production;
@@ -57,35 +57,30 @@ namespace Origins
         public readonly World World;
         public readonly List<City> Cities=new List<City>();
         public readonly List<Unit> Units=new List<Unit>();
-        public readonly HashSet<string> Technologies=new HashSet<string>();
-        public readonly HashSet<string> CulturalOpenings=new HashSet<string>();
-        public readonly List<Choice> ResearchOffers=new List<Choice>();
-        public readonly List<Choice> CultureOffers=new List<Choice>();
-        public readonly List<string> Journal=new List<string>();
         public Phase Phase=Phase.Planning;
-        public int Turn=1, Knowledge, CultureStock, Gold;
+        public int Turn=1;
         public readonly GameContent Content;
         public bool Won;
         public readonly DemoBalance Balance;
-        readonly Random random;
         int nextId;
 
         public static Choice[] Techs { get { return GameContent.Current.Technologies; } }
         public static Choice[] Projects { get { return GameContent.Current.Projects; } }
 
-        public Game(int seed,DemoBalance balance=null,GameContent content=null)
+        public Game(int seed,DemoBalance balance=null,GameContent content=null,int players=1)
         {
             Content=content??GameContent.Current??throw new InvalidOperationException("Load a game content catalog before creating a match");
             Balance=balance??new DemoBalance();
-            random=new Random(seed^0x12347); World=new World(seed);
+            Tribes.Add(new Tribe(seed^0x12347)); World=new World(seed);
             AddCity(World.Start);
             AddUnit(UnitKind.Scout,new Hex(World.Start.Q+1,World.Start.R));
             RefreshOffers();
             Log("У реки начинается история вашего племени.");
+            if(players==2) InitializeSecondPlayer(seed);
         }
         void AddCity(Hex h)
         {
-            var city=new City{Id=nextId++,Position=h,Name=Cities.Count==0 ? "Первый очаг" : "Поселение "+(Cities.Count+1)};
+            var city=new City{Id=nextId++,Owner=ActivePlayer,Position=h,Name=OwnCities.Count==0 ? ActivePlayer==0 ? "Первый очаг" : "Очаг друга" : "Поселение "+(OwnCities.Count+1)};
             city.Territory.Add(h);
             foreach(var tile in World.Neighbours(h))
             {
@@ -93,11 +88,11 @@ namespace Origins
                 if(!claimed) city.Territory.Add(tile.Hex);
             }
             Cities.Add(city); AssignResidents(city);
-            World.Reveal(h,3);
+            Reveal(h,3);
         }
-        void AddUnit(UnitKind kind,Hex h) { Units.Add(new Unit{Id=nextId++,Kind=kind,Position=h}); World.Reveal(h,2); }
+        void AddUnit(UnitKind kind,Hex h) { Units.Add(new Unit{Id=nextId++,Owner=ActivePlayer,Kind=kind,Position=h}); Reveal(h,2); }
         public void Log(string message) { Journal.Insert(0,message); if(Journal.Count>16) Journal.RemoveAt(16); }
-        public int TotalPopulation { get { int total=0; foreach(var c in Cities) total+=c.Population; return total; } }
+        public int TotalPopulation { get { int total=0; foreach(var c in OwnCities) total+=c.Population; return total; } }
         public int ExploredCount { get { int count=0; foreach(var t in World.Ordered) if(t.Explored) count++; return count; } }
         public int Movement(Unit unit) { return unit.Movement; }
         public Yield Income(City city)
@@ -107,9 +102,9 @@ namespace Origins
         }
         public bool ChooseResearch(string id)
         {
-            if(Phase!=Phase.Planning) return false;
+            if(!CanPlan) return false;
             foreach(var c in ResearchOffers) if(c.Id==id && Knowledge>=c.Cost)
-            { Knowledge-=c.Cost; Technologies.Add(c.Id); ResearchOffers.Clear(); RefreshOffers(); Log("Открытие: "+c.Name); return true; }
+            { Knowledge-=c.Cost; Technologies.Add(c.Id); ResearchOffers.Clear(); RefreshOffers(); Record("research",id); Log("Открытие: "+c.Name); return true; }
             return false;
         }
         public bool ResearchReady { get { return CanAfford(ResearchOffers,Knowledge); } }
@@ -117,20 +112,20 @@ namespace Origins
         static bool CanAfford(List<Choice> offers,int stock) { foreach(var c in offers) if(stock>=c.Cost) return true; return false; }
         public bool ChooseCulture(string id)
         {
-            if(Phase!=Phase.Planning || ResearchReady) return false;
+            if(!CanPlan || ResearchReady) return false;
             foreach(var c in CultureOffers) if(c.Id==id && CultureStock>=c.Cost)
-            { CultureStock-=c.Cost; CulturalOpenings.Add(c.Id); CultureOffers.Clear(); RefreshOffers(); Log("Культурное открытие: "+c.Name); return true; }
+            { CultureStock-=c.Cost; CulturalOpenings.Add(c.Id); CultureOffers.Clear(); RefreshOffers(); Record("culture",id); Log("Культурное открытие: "+c.Name); return true; }
             return false;
         }
         public bool ChooseProduction(City city,string id)
         {
-            if(Phase!=Phase.Planning || !Cities.Contains(city) || city.Production!=null) return false;
-            foreach(var c in city.Offers) if(c.Id==id && CanProduce(city,c)) { city.Production=c; city.ProductionProgress=0; city.Offers.Clear(); return true; }
+            if(!CanPlan || !Cities.Contains(city) || city.Owner!=ActivePlayer || city.Production!=null) return false;
+            foreach(var c in city.Offers) if(c.Id==id && CanProduce(city,c)) { city.Production=c; city.ProductionProgress=0; city.Offers.Clear(); Record("production",id,city.Id); return true; }
             return false;
         }
         public bool PlanMove(Unit unit,Hex target)
         {
-            if(Phase!=Phase.Planning || !Units.Contains(unit)) return false;
+            if(!CanPlan || !Units.Contains(unit) || unit.Owner!=ActivePlayer) return false;
             var route=World.Path(unit.Position,target,Movement(unit));
             if(route.Count==0) return false;
             if(route.Count==1) return PlanWait(unit);
@@ -138,7 +133,7 @@ namespace Origins
         }
         public bool PlanWait(Unit unit)
         {
-            if(Phase!=Phase.Planning || !Units.Contains(unit)) return false;
+            if(!CanPlan || !Units.Contains(unit) || unit.Owner!=ActivePlayer) return false;
             unit.Order.Clear(); unit.WaitOrder=true; unit.FoundOrder=false; return true;
         }
         public bool CanFound(Unit unit,Hex h)
@@ -149,7 +144,7 @@ namespace Origins
         }
         public bool PlanFound(Unit unit)
         {
-            if(Phase!=Phase.Planning || !Units.Contains(unit)) return false;
+            if(!CanPlan || !Units.Contains(unit) || unit.Owner!=ActivePlayer) return false;
             Hex h=unit.Order.Count>0 ? unit.Order[unit.Order.Count-1] : unit.Position;
             if(!CanFound(unit,h)) return false;
             unit.FoundOrder=true; unit.WaitOrder=false; return true;
@@ -159,8 +154,8 @@ namespace Origins
             if(Phase!=Phase.Planning) return "Дождитесь завершения действий";
             if(ResearchReady) return "Выберите исследование";
             if(CultureReady) return "Выберите культурное открытие";
-            foreach(var c in Cities) if(c.Production==null && c.Offers.Count>0) return "Выберите производство: "+c.Name;
-            foreach(var u in Units) if(!u.HasOrder) return "Отдайте приказ: "+u.Name;
+            foreach(var c in OwnCities) if(c.Production==null && c.Offers.Count>0) return "Выберите производство: "+c.Name;
+            foreach(var u in OwnUnits) if(!u.HasOrder) return "Отдайте приказ: "+u.Name;
             return null;
         }
         public void FinishAction()
@@ -168,20 +163,22 @@ namespace Origins
             if(Phase!=Phase.Action) return;
             ResolveTurn();
             foreach(var unit in Units) { unit.Order.Clear(); unit.FoundOrder=false; unit.WaitOrder=false; }
-            Turn++; Phase=Phase.Planning; RefreshOffers();
+            Turn++; Phase=Phase.Planning; foreach(var t in Tribes) t.Decisions.Clear(); PlansLocked=false;
+            int previous=ActivePlayer; for(int p=0;p<Tribes.Count;p++) { SetPlayer(p); RefreshOffers(); } SetPlayer(previous);
         }
         void ResolveEconomy()
         {
             var consumed=new List<Unit>();
+            int previous=ActivePlayer;
             foreach(var unit in Units) if(unit.FoundOrder && (unit.Order.Count==0 || unit.Position.Equals(unit.Order[unit.Order.Count-1])) && CanFound(unit,unit.Position))
-            { AddCity(unit.Position); consumed.Add(unit); Log("Основано поселение: "+Cities[Cities.Count-1].Name); }
+            { SetPlayer(unit.Owner); AddCity(unit.Position); consumed.Add(unit); Log("Основано поселение: "+Cities[Cities.Count-1].Name); }
             foreach(var unit in consumed) Units.Remove(unit);
-            int science=0,culture=0,gold=0;
             foreach(var city in Cities)
             {
+                SetPlayer(city.Owner);
                 if(city.PlannedFocus.HasValue) { city.Focus=city.PlannedFocus.Value; city.PlannedFocus=null; city.Workers.Clear(); }
                 AssignResidents(city);
-                Yield y=Income(city); science+=y.Science; culture+=y.Culture; gold+=y.Gold;
+                Yield y=Income(city); Knowledge+=y.Science; CultureStock+=y.Culture; Gold+=y.Gold;
                 city.BorderCulture+=y.Culture; ExpandCulture(city);
                 city.Food=Math.Max(0,Math.Min(FoodCapacity(city),city.Food+y.Food));
                 int threshold=GrowthCost(city);
@@ -208,7 +205,7 @@ namespace Origins
                 city.Production=null; city.ProductionProgress=0;
                 Log(city.Name+": готовы "+done.Name.ToLowerInvariant());
             }
-            Knowledge+=science; CultureStock+=culture; Gold+=gold;
+            SetPlayer(previous);
         }
         void RefreshOffers()
         {
@@ -224,7 +221,7 @@ namespace Origins
                 foreach(var t in Content.Cultures) if(!CulturalOpenings.Contains(t.Id) && (t.Requires==null || HasOpening(t.Requires))) pool.Add(t);
                 Offer(pool,CultureOffers);
             }
-            foreach(var city in Cities)
+            foreach(var city in OwnCities)
             {
                 city.Offers.RemoveAll(p=>!CanProduce(city,p));
                 if(city.Production!=null || city.Offers.Count>0) continue;

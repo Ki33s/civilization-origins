@@ -129,15 +129,19 @@ namespace Origins
             }
             foreach(var city in game.Cities)
             {
+                int previous=game.ActivePlayer; game.SetPlayer(city.Owner);
                 int version=CityVersion(city);
                 if(!cities.ContainsKey(city.Id) || cityVersions[city.Id]!=version) BuildCity(city);
+                game.SetPlayer(previous);
+                cities[city.Id].gameObject.SetActive(city.Owner==game.ActivePlayer || game.IsExplored(game.ActivePlayer,city.Position));
             }
             var live=new HashSet<int>();
             foreach(var unit in game.Units)
             {
                 live.Add(unit.Id);
-                if(!units.ContainsKey(unit.Id)) BuildUnit(unit);
+                if(!units.ContainsKey(unit.Id)) { int previous=game.ActivePlayer; game.SetPlayer(unit.Owner); BuildUnit(unit); game.SetPlayer(previous); }
                 units[unit.Id].position=Position(unit.Position)+Vector3.up*.05f;
+                units[unit.Id].gameObject.SetActive(unit.Owner==game.ActivePlayer || game.IsExplored(game.ActivePlayer,unit.Position));
             }
             var remove=new List<int>();
             foreach(var pair in units) if(!live.Contains(pair.Key)) { Object.Destroy(pair.Value.gameObject); remove.Add(pair.Key); }
@@ -169,15 +173,16 @@ namespace Origins
             }
             var fire=Primitive(go.transform,PrimitiveType.Sphere,new Vector3(0,.08f,0),new Vector3(.22f,.12f,.22f),Mat("fire",new Color(1,.46f,.14f)));
             var light=fire.AddComponent<Light>(); light.color=new Color(1,.57f,.24f); light.range=2.5f; light.intensity=1.1f; light.shadows=LightShadows.None;
-            Ring(go.transform,new Vector3(0,.022f,0),.89f,new Color(.9f,.73f,.35f),"Village border");
+            Color tribeColor=city.Owner==0 ? new Color(.9f,.73f,.35f) : new Color(.36f,.67f,.91f);
+            Ring(go.transform,new Vector3(0,.022f,0),.89f,tribeColor,"Village border");
             Primitive(go.transform,PrimitiveType.Cylinder,new Vector3(.2f,.6f,0),new Vector3(.035f,.6f,.035f),Mat("wood",new Color(.34f,.22f,.12f)));
-            Primitive(go.transform,PrimitiveType.Cube,new Vector3(.37f,1.02f,0),new Vector3(.34f,.2f,.025f),Mat("banner",new Color(.97f,.73f,.29f)));
+            Primitive(go.transform,PrimitiveType.Cube,new Vector3(.37f,1.02f,0),new Vector3(.34f,.2f,.025f),Mat("banner"+city.Owner,tribeColor));
             foreach(var hex in city.Territory)
             {
                 var border=new GameObject("Owned hex"); border.transform.SetParent(go.transform,false);
                 border.transform.localPosition=Position(hex)-go.transform.position+Vector3.up*.035f;
                 var line=border.AddComponent<LineRenderer>(); line.useWorldSpace=false; line.loop=true; line.positionCount=6; line.startWidth=line.endWidth=.028f;
-                line.sharedMaterial=Mat("territory",new Color(.85f,.73f,.41f));
+                line.sharedMaterial=Mat("territory"+city.Owner,tribeColor);
                 for(int corner=0;corner<6;corner++)
                 { float a=(30+corner*60)*Mathf.Deg2Rad; var p=FlatPosition(hex)+new Vector3(Mathf.Cos(a)*.985f,0,Mathf.Sin(a)*.985f); line.SetPosition(corner,OnSurface(p)+Vector3.up*.018f-border.transform.position); }
             }
@@ -226,6 +231,7 @@ namespace Origins
         {
             var go=new GameObject(unit.Name); go.transform.SetParent(root,false); units[unit.Id]=go.transform;
             Color color=unit.Kind==UnitKind.Scout ? new Color(.32f,.65f,.68f) : unit.Kind==UnitKind.Hunter || unit.Kind==UnitKind.Slinger ? new Color(.72f,.40f,.27f) : new Color(.76f,.66f,.37f);
+            if(game.Multiplayer) color=unit.Owner==0 ? new Color(.85f,.66f,.28f) : new Color(.32f,.57f,.88f);
             string role=unit.Kind==UnitKind.Trader ? "Торговец" : unit.Kind==UnitKind.Slinger ? "Пращник" : unit.Kind==UnitKind.Hunter ? "Охотник" : unit.Kind==UnitKind.Warrior ? "Воин" : unit.Kind==UnitKind.Scout ? "Разведчик" : "Поселенец";
             int members=unit.Kind==UnitKind.Trader ? 1 : 3;
             for(int i=0;i<members;i++)
@@ -244,7 +250,7 @@ namespace Origins
             Ring(go.transform,new Vector3(0,.025f,0),.39f,color,"Unit base");
             if(unit.Kind==UnitKind.Trader) return;
             Beam(go.transform,"Carved standard pole",new Vector3(0,0,-.16f),new Vector3(0,.70f,-.16f),.011f,Wood);
-            for(int panel=0;panel<7;panel++) Block(go.transform,"Stitched standard cloth",new Vector3(.015f+panel*.027f,.65f,-.16f),new Vector3(.027f,.135f,.008f),Mat("unitflag"+unit.Kind,color));
+            for(int panel=0;panel<7;panel++) Block(go.transform,"Stitched standard cloth",new Vector3(.015f+panel*.027f,.65f,-.16f),new Vector3(.027f,.135f,.008f),Mat("unitflag"+unit.Kind+unit.Owner,color));
             Band(go.transform,new Vector3(0,.56f,-.16f),.014f,Rope); Band(go.transform,new Vector3(0,.73f,-.16f),.014f,Rope);
         }
         void Person(Transform parent,Color color,float size)
@@ -370,7 +376,7 @@ namespace Origins
             if(game.Phase!=Phase.Planning) return;
             if(selected!=null) foreach(var h in game.World.Reachable(selected.Position,game.Movement(selected)).Keys)
                 orders.Add(Ring(root,Position(h)+Vector3.up*.045f,.86f,new Color(.38f,.67f,.66f),"Reachable"));
-            foreach(var u in game.Units) for(int i=1;i<u.Order.Count;i++)
+            foreach(var u in game.OwnUnits) for(int i=1;i<u.Order.Count;i++)
                 orders.Add(DrawLine(root,Position(u.Order[i-1])+Vector3.up*.12f,Position(u.Order[i])+Vector3.up*.12f,.06f,Mat("order",new Color(1,.78f,.34f))));
         }
         public void Animate(float time,float delta)

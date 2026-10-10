@@ -42,6 +42,7 @@ namespace Origins
             QualitySettings.shadows=ShadowQuality.All; QualitySettings.shadowDistance=70;
             NewRun(seed,false);
             StartSmokeIfRequested();
+            InitOnline();
         }
         public void NewRun(int worldSeed,bool play=true)
         {
@@ -80,15 +81,15 @@ namespace Origins
                 if(zoom>15) { zoom=5.5f; Focus(selectedUnit!=null ? selectedUnit.Position : selectedCity.Position); }
                 else { cameraTarget=view.WorldBounds.center; zoom=27; }
             }
-            if(Input.GetKeyDown(KeyCode.Tab) && Game.Phase==Phase.Planning && Game.Units.Count>0)
+            if(Input.GetKeyDown(KeyCode.Tab) && Game.CanPlan && Game.OwnUnits.Count>0)
             {
-                int i=selectedUnit==null ? -1 : Game.Units.IndexOf(selectedUnit);
-                SelectUnit(Game.Units[(i+1)%Game.Units.Count]);
+                var roster=Game.OwnUnits; int i=selectedUnit==null ? -1 : roster.IndexOf(selectedUnit);
+                SelectUnit(roster[(i+1)%roster.Count]);
             }
             if(Input.GetKeyDown(KeyCode.Q) && selectedUnit!=null && Game.PlanWait(selectedUnit)) { view.ShowOrders(selectedUnit); Notify("Отряд будет ждать в этом ходу."); }
             if(Input.GetKeyDown(KeyCode.Escape)) { selectedUnit=null; view.ShowOrders(null); }
             if(Input.GetKeyDown(KeyCode.Return) && !Input.GetKey(KeyCode.LeftAlt) && !Input.GetKey(KeyCode.RightAlt)) AdvancePlan();
-            if(OverUI(Input.mousePosition) || Game.Phase!=Phase.Planning) return;
+            if(OverUI(Input.mousePosition) || !Game.CanPlan) return;
             RaycastHit hit;
             if(!Physics.Raycast(cameraView.ScreenPointToRay(Input.mousePosition),out hit,200)) return;
             var tileView=hit.collider.GetComponent<TileView>();
@@ -103,8 +104,8 @@ namespace Origins
             {
                 selectedTile=tile; view.Select(tile.Hex);
                 if(!tile.Explored) return;
-                foreach(var c in Game.Cities) if(c.Position.Equals(tile.Hex)) { SelectCity(c); return; }
-                foreach(var u in Game.Units) if(u.Position.Equals(tile.Hex)) { SelectUnit(u); return; }
+                foreach(var c in Game.OwnCities) if(c.Position.Equals(tile.Hex)) { SelectCity(c); return; }
+                foreach(var u in Game.OwnUnits) if(u.Position.Equals(tile.Hex)) { SelectUnit(u); return; }
                 selectedUnit=null; view.ShowOrders(null);
             }
         }
@@ -126,9 +127,10 @@ namespace Origins
         void Notify(string message) { toast=message; toastUntil=Time.unscaledTime+7; }
         void Execute()
         {
-            if(!started || help || Game.Phase!=Phase.Planning) return;
+            if(!started || help || !Game.CanPlan) return;
             string reason=Game.BlockingReason();
             if(reason!=null) { Notify(reason); return; }
+            if(online!=null) { StartCoroutine(SubmitOnline()); return; }
             if(Game.BeginAction()) StartCoroutine(ActionRoutine()); else Notify(Game.ValidatePlans()??"План не удалось зафиксировать.");
         }
         IEnumerator ActionRoutine()
@@ -146,6 +148,7 @@ namespace Origins
                     foreach(var move in result.Moves) if(move.Tick==step)
                     {
                         var tr=view.UnitTransform(move.UnitId); if(!tr) continue;
+                        if(Game.Multiplayer) tr.gameObject.SetActive(Game.IsExplored(Game.ActivePlayer,move.From) || Game.IsExplored(Game.ActivePlayer,move.To));
                         Vector3 a=view.Position(move.From),b=view.Position(move.To);
                         tr.position=view.OnSurface(Vector3.Lerp(a,b,t))+Vector3.up*(.05f+Mathf.Sin(t*Mathf.PI)*.09f);
                         tr.rotation=Quaternion.LookRotation(new Vector3(b.x-a.x,0,b.z-a.z));
@@ -160,6 +163,7 @@ namespace Origins
             view.ShowOrders(selectedUnit);
             view.Select(selectedUnit!=null ? selectedUnit.Position : selectedCity.Position);
             Notify(Game.Phase==Phase.Finished ? "Забег завершён." : "Новый ход. Можно изменить приказы отрядов.");
+            FinishOnlineTurn();
         }
         void OnDestroy()
         {

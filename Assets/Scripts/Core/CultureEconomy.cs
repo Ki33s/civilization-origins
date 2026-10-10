@@ -33,7 +33,7 @@ namespace Origins
                 if(value>score) { best=h; score=value; }
             }
             city.BorderCulture-=BorderCost(city); city.BorderExpansions++; city.Territory.Add(best);
-            World.Reveal(best,1); Log(city.Name+": культура расширила территорию на одну клетку.");
+            Reveal(best,1); Log(city.Name+": культура расширила территорию на одну клетку.");
         }
     }
 }

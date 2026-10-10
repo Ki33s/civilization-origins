@@ -26,7 +26,7 @@ namespace Origins
         {
             if(white!=null) return;
             white=new Texture2D(1,1); white.SetPixel(0,0,Color.white); white.Apply();
-            Font font=Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            Font font=Resources.Load<Font>("OriginsUI") ?? Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
             labelStyle=new GUIStyle { font=font,fontSize=17,wordWrap=true,normal={textColor=ink} };
             smallStyle=new GUIStyle(labelStyle){fontSize=14,normal={textColor=muted}};
             headingStyle=new GUIStyle(labelStyle){fontSize=13,fontStyle=FontStyle.Bold,normal={textColor=gold}};
@@ -54,7 +54,7 @@ namespace Origins
             if(Game==null || view==null || UIScale<=0) return;
             InitUI(); GUI.matrix=Matrix4x4.Scale(new Vector3(UIScale,UIScale,1));
             if(!started) { DrawStart(); return; }
-            DrawTop(); DrawLeft(); DrawRight(); DrawBottom(); DrawMapLabels();
+            DrawTop(); DrawLeft(); DrawRight(); DrawBottom(); DrawMapLabels(); DrawOnlineStatus();
             if(help) DrawHelp();
             if(choiceWindow!=0) DrawChoiceModal();
             if(Game.Phase==Phase.Finished) DrawResult();
@@ -66,9 +66,9 @@ namespace Origins
             Text(24,13,250,36,"И С Т О К И",new GUIStyle(titleStyle){fontSize=27});
             Text(25,49,260,22,"OPENSPEC · ПЛАН И ДЕЙСТВИЯ",headingStyle);
             int science=0,culture=0,goldIncome=0;
-            foreach(var c in Game.Cities) { Yield y=Game.Income(c); science+=y.Science; culture+=y.Culture; goldIncome+=y.Gold; }
+            foreach(var c in Game.OwnCities) { Yield y=Game.Income(c); science+=y.Science; culture+=y.Culture; goldIncome+=y.Gold; }
             Text(320,16,170,28,Game.TotalPopulation+"  жителей",cardTitleStyle);
-            Text(320,47,170,20,Game.Cities.Count+"  поселений",smallStyle);
+            Text(320,47,170,20,Game.OwnCities.Count+"  поселений",smallStyle);
             Text(505,16,175,28,"Наука "+Game.Knowledge+" (+"+science+")",new GUIStyle(cardTitleStyle){fontSize=17});
             Text(505,47,175,20,Game.Technologies.Count+" / "+Game.Content.Technologies.Length+" технологий",smallStyle);
             Text(690,16,180,28,"Культура "+Game.CultureStock+" (+"+culture+")",new GUIStyle(cardTitleStyle){fontSize=17});
@@ -76,7 +76,7 @@ namespace Origins
             Text(885,16,170,28,"Золото "+Game.Gold+" (+"+goldIncome+")",new GUIStyle(cardTitleStyle){fontSize=17});
             Text(885,47,175,20,"общая казна державы",smallStyle);
             Text(w-440,12,225,28,"Ход "+Game.Turn+" · "+Math.Abs(Game.CalendarYear)+(Game.CalendarYear<=0 ? " до н. э." : " н. э."),new GUIStyle(cardTitleStyle){fontSize=16});
-            Text(w-440,48,225,20,Game.Phase==Phase.Planning ? "01  ПЛАНИРОВАНИЕ" : Game.Phase==Phase.Action ? "02  ДЕЙСТВИЯ" : "ЗАБЕГ ЗАВЕРШЁН",headingStyle);
+            Text(w-440,48,225,20,Game.Phase==Phase.Planning ? Game.PlansLocked ? "01  ПЛАН ПОДТВЕРЖДЁН" : "01  ПЛАНИРОВАНИЕ" : Game.Phase==Phase.Action ? "02  ДЕЙСТВИЯ" : "ЗАБЕГ ЗАВЕРШЁН",headingStyle);
             if(Button(new Rect(w-192,20,74,38),"?")) help=true;
             if(Button(new Rect(w-106,20,82,38),"К очагу")) Focus(selectedCity.Position);
         }
@@ -89,18 +89,18 @@ namespace Origins
             // A scrollable roster stays usable after recruiting many units.
             float rosterHeight=Mathf.Min(270,h-620);
             rosterHeight=Mathf.Max(180,rosterHeight);
-            rosterScroll=GUI.BeginScrollView(new Rect(28,y,246,rosterHeight),rosterScroll,new Rect(0,0,225,Game.Cities.Count*44+Game.Units.Count*46+36));
+            rosterScroll=GUI.BeginScrollView(new Rect(28,y,246,rosterHeight),rosterScroll,new Rect(0,0,225,Game.OwnCities.Count*44+Game.OwnUnits.Count*46+36));
             float ry=0;
-            foreach(var city in Game.Cities)
+            foreach(var city in Game.OwnCities)
             {
                 if(Button(new Rect(0,ry,222,38),city.Name+"  ·  "+city.Population,Game.Phase!=Phase.Action,city==selectedCity && selectedUnit==null)) SelectCity(city);
                 ry+=44;
             }
             Text(0,ry+4,222,24,"ОТРЯДЫ",headingStyle); ry+=32;
-            foreach(var unit in Game.Units)
+            foreach(var unit in Game.OwnUnits)
             {
                 string order=unit.FoundOrder ? "  [город]" : unit.Order.Count>1 ? "  [путь]" : unit.WaitOrder ? "  [ждёт]" : "  [без приказа]";
-                if(Button(new Rect(0,ry,222,40),unit.Name+order,Game.Phase==Phase.Planning,selectedUnit==unit)) SelectUnit(unit);
+                if(Button(new Rect(0,ry,222,40),unit.Name+order,Game.CanPlan,selectedUnit==unit)) SelectUnit(unit);
                 ry+=46;
             }
             GUI.EndScrollView();
@@ -111,13 +111,13 @@ namespace Origins
                 Text(32,y,238,26,selectedUnit.Name,cardTitleStyle); y+=34;
                 Text(32,y,238,66,"Движение: "+Game.Movement(selectedUnit)+" очков\nЛес и холмы стоят 2 очка.\nПриказ: "+(selectedUnit.FoundOrder ? "основать город" : selectedUnit.WaitOrder ? "ждать" : selectedUnit.HasOrder ? "двигаться" : "не задан"),smallStyle); y+=72;
                 Text(32,y,238,50,"ПКМ по подсвеченной клетке — задать или заменить маршрут.",smallStyle); y+=60;
-                if(Button(new Rect(32,y,238,36),"Остаться на месте",Game.Phase==Phase.Planning))
+                if(Button(new Rect(32,y,238,36),"Остаться на месте",Game.CanPlan))
                 { Game.PlanWait(selectedUnit); view.ShowOrders(selectedUnit); }
                 y+=44;
                 if(selectedUnit.Kind==UnitKind.Settler)
                 {
                     Hex target=selectedUnit.Order.Count>0 ? selectedUnit.Order[selectedUnit.Order.Count-1] : selectedUnit.Position;
-                    bool can=Game.Phase==Phase.Planning && Game.CanFound(selectedUnit,target);
+                    bool can=Game.CanPlan && Game.CanFound(selectedUnit,target);
                     if(Button(new Rect(32,y,238,40),selectedUnit.FoundOrder ? "Отменить основание" : "Основать поселение",can,true))
                     {
                         if(selectedUnit.FoundOrder) selectedUnit.FoundOrder=false;
@@ -168,7 +168,7 @@ namespace Origins
             Text(x,y,294,22,"Свободны: "+(selectedCity.Population-selectedCity.Workers.Count)+" · освоено "+selectedCity.Improvements.Count,smallStyle); y+=30;
             CityFocus targetFocus=(selectedCity.PlannedFocus??selectedCity.Focus)==CityFocus.Food ? CityFocus.Production : CityFocus.Food;
             string focusName=(selectedCity.PlannedFocus??selectedCity.Focus)==CityFocus.Food ? "еда" : "производство";
-            if(Button(new Rect(x,y,294,34),"Приоритет: "+focusName+(selectedCity.PlannedFocus.HasValue ? " [план]" : ""),Game.Phase==Phase.Planning))
+            if(Button(new Rect(x,y,294,34),"Приоритет: "+focusName+(selectedCity.PlannedFocus.HasValue ? " [план]" : ""),Game.CanPlan))
             { Game.PlanFocus(selectedCity,targetFocus); Notify("В начале действий жители заново выберут рабочие места."); }
             y+=49;
             Text(x,y,294,22,"ПРОИЗВОДСТВО",headingStyle); y+=29;
@@ -182,7 +182,7 @@ namespace Origins
             }
             else
             {
-                if(Button(new Rect(x,y,294,36),"Выбрать заказ",Game.Phase==Phase.Planning))
+                if(Button(new Rect(x,y,294,36),"Выбрать заказ",Game.CanPlan))
                 { if(Game.ResearchReady) choiceWindow=1; else if(Game.CultureReady) choiceWindow=3; else choiceWindow=2; }
                 y+=48;
             }
@@ -192,11 +192,11 @@ namespace Origins
         static string Signed(int value) { return value>=0 ? "+"+value : value.ToString(); }
         void AdvancePlan()
         {
-            if(!started || help || Game.Phase!=Phase.Planning) return;
+            if(!started || help || !Game.CanPlan) return;
             if(Game.ResearchReady) { choiceWindow=1; return; }
             if(Game.CultureReady) { choiceWindow=3; return; }
-            foreach(var city in Game.Cities) if(city.Production==null && city.Offers.Count>0) { SelectCity(city); choiceWindow=2; return; }
-            foreach(var unit in Game.Units) if(!unit.HasOrder) { SelectUnit(unit); Notify("Задайте маршрут ПКМ или нажмите Q, чтобы ждать."); return; }
+            foreach(var city in Game.OwnCities) if(city.Production==null && city.Offers.Count>0) { SelectCity(city); choiceWindow=2; return; }
+            foreach(var unit in Game.OwnUnits) if(!unit.HasOrder) { SelectUnit(unit); Notify("Задайте маршрут ПКМ или нажмите Q, чтобы ждать."); return; }
             Execute();
         }
         void DrawChoiceModal()
@@ -220,7 +220,7 @@ namespace Origins
                 Text(cx+18,y+211,238,160,c.Description,new GUIStyle(labelStyle){fontSize=16});
                 Text(cx+18,y+391,238,25,"Стоимость: "+c.Cost+(research ? " науки" : culture ? " культуры" : " труда"),smallStyle);
                 bool affordable=!research && !culture || (research ? Game.Knowledge : Game.CultureStock)>=c.Cost;
-                if(Button(new Rect(cx+18,y+428,238,34),"Выбрать",Game.Phase==Phase.Planning && affordable,true))
+                if(Button(new Rect(cx+18,y+428,238,34),"Выбрать",Game.CanPlan && affordable,true))
                 {
                     bool ok=research ? Game.ChooseResearch(c.Id) : culture ? Game.ChooseCulture(c.Id) : Game.ChooseProduction(selectedCity,c.Id);
                     if(ok) { choiceWindow=0; Notify(c.Name+": решение принято."); }
@@ -237,7 +237,7 @@ namespace Origins
             Text(x+13,y+9,212,25,choice.Name,cardTitleStyle);
             Text(x+236,y+13,48,22,choice.Cost.ToString(),headingStyle);
             Text(x+13,y+35,267,31,choice.Description,new GUIStyle(smallStyle){fontSize=13});
-            bool was=GUI.enabled; GUI.enabled=Game.Phase==Phase.Planning;
+            bool was=GUI.enabled; GUI.enabled=Game.CanPlan;
             if(GUI.Button(r,GUIContent.none,GUIStyle.none))
             {
                 if(research) Game.ChooseResearch(choice.Id); else Game.ChooseProduction(city,choice.Id);
@@ -253,15 +253,16 @@ namespace Origins
             Text(24,y+46,770,25,"ЛКМ — выбор   ПКМ — маршрут   WASD — камера   Колесо — масштаб   Tab — отряд",smallStyle);
             if(Time.unscaledTime<toastUntil) Text(560,y+12,w-1010,55,toast,smallStyle);
             string blocking=Game.BlockingReason();
-            int missing=0; foreach(var unit in Game.Units) if(!unit.HasOrder) missing++;
-            bool production=false; foreach(var city in Game.Cities) if(city.Production==null && city.Offers.Count>0) production=true;
-            string text=Game.Phase==Phase.Action ? "ВЫПОЛНЕНИЕ…" : Game.ResearchReady ? "ВЫБРАТЬ ТЕХНОЛОГИЮ  →" : Game.CultureReady ? "ВЫБРАТЬ КУЛЬТУРУ  →" : production ? "ВЫБРАТЬ ПРОИЗВОДСТВО  →" : missing>0 ? "ПРИКАЗЫ ОТРЯДАМ: "+missing+"  →" : "ЗАВЕРШИТЬ ХОД  →";
-            if(Button(new Rect(w-330,y+16,306,52),text,Game.Phase==Phase.Planning,true)) AdvancePlan();
+            int missing=0; foreach(var unit in Game.OwnUnits) if(!unit.HasOrder) missing++;
+            bool production=false; foreach(var city in Game.OwnCities) if(city.Production==null && city.Offers.Count>0) production=true;
+            string text=Game.Phase==Phase.Action ? "ВЫПОЛНЕНИЕ…" : online!=null && Game.PlansLocked ? "ЖДЁМ ДРУГА…" : online!=null && online.players<2 ? "ПРИГЛАСИТЕ ДРУГА" : Game.ResearchReady ? "ВЫБРАТЬ ТЕХНОЛОГИЮ  →" : Game.CultureReady ? "ВЫБРАТЬ КУЛЬТУРУ  →" : production ? "ВЫБРАТЬ ПРОИЗВОДСТВО  →" : missing>0 ? "ПРИКАЗЫ ОТРЯДАМ: "+missing+"  →" : "ЗАВЕРШИТЬ ХОД  →";
+            if(Button(new Rect(w-330,y+16,306,52),text,Game.CanPlan,true)) AdvancePlan();
         }
         void DrawMapLabels()
         {
             foreach(var city in Game.Cities)
             {
+                if(!Game.IsExplored(Game.ActivePlayer,city.Position)) continue;
                 Vector3 p=cameraView.WorldToScreenPoint(view.Position(city.Position)+Vector3.up*1.45f);
                 if(p.z<0) continue;
                 float x=p.x/UIScale,y=(Screen.height-p.y)/UIScale;
@@ -306,7 +307,7 @@ namespace Origins
             Box(new Rect(x,y,600,440),panel); Box(new Rect(x,y,600,3),gold);
             Text(x+32,y+31,536,60,Game.Won ? "Первые шаги цивилизации" : "История первого племени",new GUIStyle(titleStyle){fontSize=29});
             Text(x+32,y+112,536,70,Game.Won ? "Ваши поселения стали домом для нового народа. Ранняя эпоха пройдена." : "48 ходов завершены. Попробуйте другой мир и иной путь развития.",labelStyle);
-            Text(x+32,y+206,536,65,Game.Cities.Count+" поселений    ·    "+Game.TotalPopulation+" жителей\n"+Game.Technologies.Count+" открытий    ·    "+Game.ExploredCount+" клеток мира",cardTitleStyle);
+            Text(x+32,y+206,536,65,Game.OwnCities.Count+" поселений    ·    "+Game.TotalPopulation+" жителей\n"+Game.Technologies.Count+" открытий    ·    "+Game.ExploredCount+" клеток мира",cardTitleStyle);
             if(Button(new Rect(x+32,y+300,536,48),"Новый мир",true,true)) NewRun(UnityEngine.Random.Range(1,99999999));
             if(Button(new Rect(x+32,y+363,536,42),"Повторить зерно "+seed)) NewRun(seed);
         }

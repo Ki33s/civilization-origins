@@ -10,7 +10,7 @@ namespace Origins
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         static void Install()
         {
-            if(Application.isEditor) return;
+            if(Application.isEditor || Application.platform==RuntimePlatform.WebGLPlayer) return;
             var go=new GameObject("Display settings"); DontDestroyOnLoad(go);
             go.AddComponent<NativeFullscreen>();
         }

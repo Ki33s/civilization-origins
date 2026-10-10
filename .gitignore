@@ -10,6 +10,16 @@ Builds/
 .vs/
 TestResults/
 Tools/GitHub/
+Tools/Dotnet/
+**/bin/
+**/obj/
+Online/Server/wwwroot/
+Online/Server/data/
+Online/site/
+Online/artifacts/
+Online/Deployment/
+!Online/Server/*.csproj
+!Online/Checks/*.csproj
 *.log
 *.pidb
 *.user

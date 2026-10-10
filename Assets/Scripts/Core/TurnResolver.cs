@@ -44,7 +44,7 @@ namespace Origins
                     for(int i=1;i<u.Order.Count;i++)
                     {
                         var tile=World.Get(u.Order[i]);
-                        if(tile==null || !tile.Walkable || !tile.Explored || Hex.Distance(u.Order[i-1],u.Order[i])!=1) return "Маршрут содержит недоступный шаг";
+                        if(tile==null || !tile.Walkable || !IsExplored(u.Owner,tile.Hex) || Hex.Distance(u.Order[i-1],u.Order[i])!=1) return "Маршрут содержит недоступный шаг";
                         cost+=tile.MoveCost;
                     }
                     if(cost>Movement(u)) return "Маршрут превышает очки движения";
@@ -56,7 +56,9 @@ namespace Origins
         }
         public bool BeginAction()
         {
-            if(BlockingReason()!=null || ValidatePlans()!=null) return false;
+            int previous=ActivePlayer;
+            for(int p=0;p<Tribes.Count;p++) { SetPlayer(p); if(BlockingReason()!=null) { SetPlayer(previous); return false; } }
+            SetPlayer(previous); if(ValidatePlans()!=null) return false;
             committed=new List<CommittedUnit>(); resolved=null;
             foreach(var u in Units)
             {
@@ -124,9 +126,9 @@ namespace Origins
                     var c=committed.Find(x=>x.Unit.Id==move.UnitId); c.Unit.Position=move.To; c.Index++;
                     if(c.Kind==UnitKind.Trader) World.AddRoad(move.From,move.To);
                     c.Due=c.Index+1<c.Route.Length ? tick+World.Get(c.Route[c.Index+1]).MoveCost : int.MaxValue;
-                    World.Reveal(move.To,2); var tile=World.Get(move.To);
+                    Reveal(move.To,2,c.Unit.Owner); var tile=World.Get(move.To);
                     if(tile.Resource==Resource.Discovery && !tile.DiscoveryTaken)
-                    { tile.DiscoveryTaken=true; Knowledge+=3; Log("Разведчики нашли древнюю стоянку: +3 знания."); }
+                    { tile.DiscoveryTaken=true; Tribes[c.Unit.Owner].Knowledge+=3; Tribes[c.Unit.Owner].Journal.Insert(0,"Разведчики нашли древнюю стоянку: +3 знания."); }
                 }
             }
             foreach(var c in committed)

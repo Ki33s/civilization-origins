@@ -30,8 +30,8 @@ namespace Origins
         public int PopulationCapacity(City city) { return Balance.BasePopulationCapacity+(city.Buildings.Contains("huts") ? Balance.HousingBonus : 0); }
         public bool PlanFocus(City city,CityFocus focus)
         {
-            if(Phase!=Phase.Planning || !Cities.Contains(city)) return false;
-            city.PlannedFocus=focus; return true;
+            if(!CanPlan || !Cities.Contains(city) || city.Owner!=ActivePlayer) return false;
+            city.PlannedFocus=focus; Record("focus",null,city.Id,(int)focus); return true;
         }
         public string RequiredOpening(Resource resource)
         {

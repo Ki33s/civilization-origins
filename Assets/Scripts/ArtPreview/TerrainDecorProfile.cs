@@ -51,6 +51,7 @@ namespace Origins
             get
             {
                 if(Application.isEditor) return Path.Combine(Application.dataPath,"Resources/TerrainDecorProfile.json");
+                if(Application.platform==RuntimePlatform.WebGLPlayer) return Path.Combine(Application.persistentDataPath,"TerrainDecorProfile.json");
                 string project=Path.GetFullPath(Path.Combine(Application.dataPath,"../../../Assets/Resources/TerrainDecorProfile.json"));
                 return File.Exists(project) ? project : Path.GetFullPath(Path.Combine(Application.dataPath,"../TerrainDecorProfile.json"));
             }

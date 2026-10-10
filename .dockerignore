@@ -1,0 +1,14 @@
+*
+!Assets/
+!Assets/Scripts/
+!Assets/Scripts/Core/
+!Assets/Scripts/Core/*.cs
+!Assets/Resources/
+!Assets/Resources/EarlyEraContent.json
+!Assets/Resources/DemoBalance.json
+!Online/
+!Online/Server/
+!Online/Server/**
+Online/Server/bin/
+Online/Server/obj/
+Online/Server/data/
