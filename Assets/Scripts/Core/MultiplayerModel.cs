@@ -27,7 +27,7 @@ namespace Origins
     [Serializable] public sealed class OnlineRoom
     {
         public int protocol=1, seed, seat, turn, players;
-        public string code, token, error, version;
+        public string code, token, error, version, api;
         public bool[] ready;
         public OnlineTurn[] history;
         public PlayerPlan pending;

@@ -10,7 +10,10 @@ builder.WebHost.ConfigureKestrel(o=>o.Limits.MaxRequestBodySize=4194304);
 builder.Services.ConfigureHttpJsonOptions(o=> { o.SerializerOptions.IncludeFields=true; o.SerializerOptions.PropertyNamingPolicy=null; });
 builder.Services.AddRateLimiter(o=>o.GlobalLimiter=PartitionedRateLimiter.Create<HttpContext,string>(context=>RateLimitPartition.GetFixedWindowLimiter(context.Connection.RemoteIpAddress?.ToString()??"local",key=>new FixedWindowRateLimiterOptions { PermitLimit=200,Window=TimeSpan.FromSeconds(10),QueueLimit=0 })));
 builder.Services.AddSingleton<RoomStore>();
+var clientOrigins=(Environment.GetEnvironmentVariable("CLIENT_ORIGINS")??"").Split(',',StringSplitOptions.RemoveEmptyEntries|StringSplitOptions.TrimEntries);
+builder.Services.AddCors(o=>o.AddDefaultPolicy(p=> { if(clientOrigins.Length>0) p.WithOrigins(clientOrigins).WithHeaders("Authorization","Content-Type").WithMethods("GET","POST","DELETE","OPTIONS"); }));
 var app=builder.Build();
+app.UseCors();
 app.UseRateLimiter();
 app.Use(async (context,next)=>
 {

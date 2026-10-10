@@ -24,6 +24,7 @@ namespace Origins.Editor
             if(report.summary.result!=UnityEditor.Build.Reporting.BuildResult.Succeeded) throw new Exception("Web build failed: "+report.summary.result);
             Directory.CreateDirectory("Online/Server/wwwroot/licenses");
             File.Copy("Docs/ThirdParty/NotoSans-LICENSE.txt","Online/Server/wwwroot/licenses/NotoSans-LICENSE.txt",true);
+            File.WriteAllText("Online/Server/wwwroot/server-config.js","window.ORIGINS_SERVER_URL = null;\n");
             Debug.Log("ORIGINS ONLINE: WebGL build succeeded");
         }
     }

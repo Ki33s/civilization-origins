@@ -30,7 +30,10 @@ namespace Origins
                 var room=JsonUtility.FromJson<OnlineRoom>(json);
                 if(room==null || room.protocol!=1 || room.seat<0 || room.seat>1 || string.IsNullOrEmpty(room.token)) throw new Exception("Неверные данные комнаты");
                 Debug.Log("ORIGINS ONLINE: connecting seat "+room.seat+" at turn "+room.turn);
-                online=room; apiRoot=new Uri(new Uri(Application.absoluteURL),"/api/").AbsoluteUri;
+                online=room;
+                var endpoint=string.IsNullOrEmpty(room.api) ? new Uri(new Uri(Application.absoluteURL),"/api/") : new Uri(room.api);
+                if(endpoint.Scheme!="https" && !(endpoint.Scheme=="http" && endpoint.IsLoopback)) throw new Exception("Для онлайн-игры нужен защищённый адрес сервера");
+                apiRoot=endpoint.AbsoluteUri;
                 InstallOnlineGame(room); StartCoroutine(PollOnline());
                 Debug.Log("ORIGINS ONLINE: connected");
             }
