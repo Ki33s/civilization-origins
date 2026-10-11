@@ -80,6 +80,7 @@ namespace Origins.Editor
             camera.gameObject.AddComponent<AudioListener>(); camera.gameObject.AddComponent<DevelopmentGalleryViewer>().groups=groups;
             for(int i=0;i<groups.Length;i++) groups[i].SetActive(i==0);
             AssetDatabase.SaveAssets(); EditorSceneManager.SaveScene(scene,ScenePath);
+            if(File.Exists(LonghouseModelBuilder.PrefabPath)) LonghouseModelBuilder.InstallGallery();
             Debug.Log("GALLERY: 10 tiles, "+groups[1].transform.childCount+" units, "+groups[2].transform.childCount+" buildings, "+groups[3].transform.childCount+" resident/tool examples saved");
         }
         static void AddModel(Transform model,string key,string title,string description,Transform group,int index,int rows,float scale,float height)

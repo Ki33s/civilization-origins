@@ -90,6 +90,12 @@ namespace Origins
         void DetailedBuilding(Transform parent,Vector3 p,string id)
         {
             var site=Node(parent,"Architecture · "+id,LocalSurface(parent,p));
+            if(id=="longhouse")
+            {
+                var prefab=Resources.Load<GameObject>("Buildings/Longhouse");
+                if(prefab) Object.Instantiate(prefab,site,false).transform.localScale=Vector3.one*.22f;
+                return;
+            }
             bool stone=game.Technologies.Contains("masonry");
             if(id=="stonehenge" || id=="pyramids" || id=="gardens") { WonderModel(site,id); return; }
             if(id=="hearth") { DetailedHearth(site,Vector3.zero); return; }
