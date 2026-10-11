@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "date": "2026-10-11",
+  "tool": "image_gen.imagegen",
+  "status": "reference concept image, not a 3D mesh",
+  "requests": [
+    {
+      "filename": "clay-pot-reference-v1.png",
+      "reference": "../E02/e02-buildings-v1.png",
+      "prompt": "Use case: stylized-concept. Asset type: SINGLE-object reference image for a local Blender-based game model authoring program. Primary request: one beautiful, detailed, unglazed early-era clay storage pot for our original isometric strategy game. Input image: provided E02 buildings sheet is a STYLE reference ONLY, especially the warm terracotta vessels at the pottery workshop; do not reproduce any building or hex. Subject: ONE empty, handleless, lidless hollow pot, pear-shaped softly rounded body, widest below shoulder, short narrow neck, gently flared thick rounded lip, modest flat stable base. Approximate intended game dimensions height 45 cm, widest diameter 32 cm, mouth 18 cm, wall about 1.5 cm. Show actual hollow interior and consistent wall thickness at lip, inner clay darkens naturally with light, no flat painted black plug. Materials: warm red ochre and burnt orange terracotta with broad subtle mottling, faint handmade irregularity, delicate pottery forming marks, a few small softly rounded chips at rim but intact usable vessel. Beautiful rounded silhouette, substantial geometry, soft bevels, no obvious coarse faceting, no uniform noisy stippling. Composition: object entire in frame filling about 75% of height, orthographic isometric three-quarter view around 35.264 degrees downward, interior visible, clean matte muted dark green-gray opaque studio backdrop, soft upper-left key light and gentle contact shadow. No hex, no pedestal, no ground scenery, no tools, no grain, no flowers, no buildings, no second vessel, no other objects, no hands, no labels, no captions, no watermark. This is an image concept, intended to become one reusable separate 3D object later, not an already generated mesh."
+    }
+  ]
+}
