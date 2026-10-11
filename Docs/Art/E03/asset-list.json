@@ -1,0 +1,270 @@
+{
+  "version": "e03-concepts-1",
+  "date": "2026-10-11",
+  "status": "Raster modeling references only; no meshes, rigs, clips or gameplay changes",
+  "positionConvention": "Row,column from upper left, 1-based; wonder positions left/right",
+  "tool": "image_gen.imagegen",
+  "assets": [
+    {
+      "id": "bronze_foundry",
+      "kind": "building",
+      "name": "Литейная мастерская",
+      "sheet": "e03-buildings-v2.png",
+      "position": "1,1",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "scribal_house",
+      "kind": "building",
+      "name": "Дом писцов",
+      "sheet": "e03-buildings-v2.png",
+      "position": "1,2",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "market",
+      "kind": "building",
+      "name": "Рынок",
+      "sheet": "e03-buildings-v2.png",
+      "position": "1,3",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "stone_gate",
+      "kind": "building",
+      "name": "Каменные ворота",
+      "sheet": "e03-buildings-v2.png",
+      "position": "2,1",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "river_port",
+      "kind": "building",
+      "name": "Речной порт",
+      "sheet": "e03-buildings-v2.png",
+      "position": "2,2",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "courtyard_house",
+      "kind": "building",
+      "name": "Дом с двором",
+      "sheet": "e03-buildings-v2.png",
+      "position": "2,3",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "civic_hall",
+      "kind": "building",
+      "name": "Дом управления",
+      "sheet": "e03-buildings-v2.png",
+      "position": "3,1",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "temple_court",
+      "kind": "building",
+      "name": "Храмовый двор",
+      "sheet": "e03-buildings-v2.png",
+      "position": "3,2",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "warehouse",
+      "kind": "building",
+      "name": "Торговый склад",
+      "sheet": "e03-buildings-v2.png",
+      "position": "3,3",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "bronze_spearman",
+      "kind": "unit",
+      "name": "Бронзовый копейщик",
+      "sheet": "e03-units-v1.png",
+      "position": "1,1",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "archer",
+      "kind": "unit",
+      "name": "Лучник",
+      "sheet": "e03-units-v1.png",
+      "position": "1,2",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "trade_cart",
+      "kind": "unit",
+      "name": "Торговая повозка",
+      "sheet": "e03-units-v1.png",
+      "position": "2,1",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "river_patrol",
+      "kind": "unit",
+      "name": "Речная сторожевая лодка",
+      "sheet": "e03-units-v1.png",
+      "position": "2,2",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "ore_miner",
+      "kind": "resident",
+      "name": "Рудокоп",
+      "sheet": "e03-residents-v1.png",
+      "position": "1,1",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "bronze_caster",
+      "kind": "resident",
+      "name": "Литейщик",
+      "sheet": "e03-residents-v1.png",
+      "position": "1,2",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "bronze_smith",
+      "kind": "resident",
+      "name": "Кузнец",
+      "sheet": "e03-residents-v1.png",
+      "position": "1,3",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "scribe",
+      "kind": "resident",
+      "name": "Писец",
+      "sheet": "e03-residents-v1.png",
+      "position": "1,4",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "archive_keeper",
+      "kind": "resident",
+      "name": "Хранитель архива",
+      "sheet": "e03-residents-v1.png",
+      "position": "2,1",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "market_trader",
+      "kind": "resident",
+      "name": "Торговец",
+      "sheet": "e03-residents-v1.png",
+      "position": "2,2",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "stone_mason",
+      "kind": "resident",
+      "name": "Каменщик",
+      "sheet": "e03-residents-v1.png",
+      "position": "2,3",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "dock_worker",
+      "kind": "resident",
+      "name": "Портовый рабочий",
+      "sheet": "e03-residents-v1.png",
+      "position": "2,4",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "bronze_mine",
+      "kind": "improvement",
+      "name": "Рудник",
+      "sheet": "e03-tiles-v2.png",
+      "position": "1,1",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "stone_quarry",
+      "kind": "improvement",
+      "name": "Каменоломня",
+      "sheet": "e03-tiles-v2.png",
+      "position": "1,2",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "charcoal_site",
+      "kind": "improvement",
+      "name": "Топливная делянка",
+      "sheet": "e03-tiles-v2.png",
+      "position": "1,3",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "caravan_camp",
+      "kind": "improvement",
+      "name": "Караванная стоянка",
+      "sheet": "e03-tiles-v2.png",
+      "position": "2,1",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "packed_road",
+      "kind": "improvement",
+      "name": "Укатанная дорога",
+      "sheet": "e03-tiles-v2.png",
+      "position": "2,2",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "shore_landing",
+      "kind": "improvement",
+      "name": "Береговой причал",
+      "sheet": "e03-tiles-v2.png",
+      "position": "2,3",
+      "status": "concept",
+      "implementation": "Not implemented by this art packet"
+    },
+    {
+      "id": "pyramids",
+      "kind": "wonder",
+      "name": "Пирамиды — подробный вариант",
+      "sheet": "e03-wonders-v1.png",
+      "position": "left",
+      "status": "concept",
+      "implementation": "Existing gameplay ID; new raster art variant only"
+    },
+    {
+      "id": "gardens",
+      "kind": "wonder",
+      "name": "Висячие сады — подробный вариант",
+      "sheet": "e03-wonders-v1.png",
+      "position": "right",
+      "status": "concept",
+      "implementation": "Existing gameplay ID; new raster art variant only"
+    }
+  ]
+}
