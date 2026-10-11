@@ -1,0 +1,297 @@
+{
+  "version": "e04-concepts-1.1",
+  "date": "2026-10-11",
+  "status": "32 raster concepts; new gameplay rules and wonders are proposals",
+  "positionConvention": "row,column from upper left, 1-based; units THREE rows by TWO columns",
+  "tool": "image_gen.imagegen",
+  "assets": [
+    {
+      "id": "iron_forge",
+      "kind": "building",
+      "name": "Железная кузница",
+      "sheet": "e04-buildings-v1.png",
+      "position": "1,1",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "aqueduct",
+      "kind": "building",
+      "name": "Акведук",
+      "sheet": "e04-buildings-v1.png",
+      "position": "1,2",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "theatre",
+      "kind": "building",
+      "name": "Театр",
+      "sheet": "e04-buildings-v1.png",
+      "position": "1,3",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "academy",
+      "kind": "building",
+      "name": "Академия",
+      "sheet": "e04-buildings-v1.png",
+      "position": "2,1",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "barracks",
+      "kind": "building",
+      "name": "Казармы",
+      "sheet": "e04-buildings-v1.png",
+      "position": "2,2",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "administration",
+      "kind": "building",
+      "name": "Администрация",
+      "sheet": "e04-buildings-v1.png",
+      "position": "2,3",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "public_baths",
+      "kind": "building",
+      "name": "Термы",
+      "sheet": "e04-buildings-v1.png",
+      "position": "3,1",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "stables",
+      "kind": "building",
+      "name": "Конюшня",
+      "sheet": "e04-buildings-v1.png",
+      "position": "3,2",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "urban_temple",
+      "kind": "building",
+      "name": "Городской храм",
+      "sheet": "e04-buildings-v1.png",
+      "position": "3,3",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "swordsman",
+      "kind": "unit",
+      "name": "Мечник",
+      "sheet": "e04-units-v2.png",
+      "position": "1,1",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "cavalry",
+      "kind": "unit",
+      "name": "Конница",
+      "sheet": "e04-units-v2.png",
+      "position": "1,2",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "siege_ram",
+      "kind": "unit",
+      "name": "Таран",
+      "sheet": "e04-units-v2.png",
+      "position": "2,1",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "ballista",
+      "kind": "unit",
+      "name": "Баллиста",
+      "sheet": "e04-units-v2.png",
+      "position": "2,2",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "galley",
+      "kind": "unit",
+      "name": "Галера",
+      "sheet": "e04-units-v2.png",
+      "position": "3,1",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "preacher",
+      "kind": "unit",
+      "name": "Проповедник",
+      "sheet": "e04-units-v2.png",
+      "position": "3,2",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "iron_smith",
+      "kind": "resident",
+      "name": "Железный кузнец",
+      "sheet": "e04-residents-v1.png",
+      "position": "1,1",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "civil_engineer",
+      "kind": "resident",
+      "name": "Инженер",
+      "sheet": "e04-residents-v1.png",
+      "position": "1,2",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "tutor",
+      "kind": "resident",
+      "name": "Преподаватель",
+      "sheet": "e04-residents-v1.png",
+      "position": "1,3",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "performer",
+      "kind": "resident",
+      "name": "Артист",
+      "sheet": "e04-residents-v1.png",
+      "position": "1,4",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "stable_keeper",
+      "kind": "resident",
+      "name": "Конюх",
+      "sheet": "e04-residents-v1.png",
+      "position": "2,1",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "drill_master",
+      "kind": "resident",
+      "name": "Инструктор",
+      "sheet": "e04-residents-v1.png",
+      "position": "2,2",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "civic_official",
+      "kind": "resident",
+      "name": "Чиновник",
+      "sheet": "e04-residents-v1.png",
+      "position": "2,3",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "temple_priest",
+      "kind": "resident",
+      "name": "Служитель храма",
+      "sheet": "e04-residents-v1.png",
+      "position": "2,4",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "iron_mine",
+      "kind": "improvement",
+      "name": "Железный рудник",
+      "sheet": "e04-tiles-v1.png",
+      "position": "1,1",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "horse_pasture",
+      "kind": "improvement",
+      "name": "Конное пастбище",
+      "sheet": "e04-tiles-v1.png",
+      "position": "1,2",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "paved_road",
+      "kind": "improvement",
+      "name": "Мощёная дорога",
+      "sheet": "e04-tiles-v1.png",
+      "position": "1,3",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "stone_bridge",
+      "kind": "improvement",
+      "name": "Каменный мост",
+      "sheet": "e04-tiles-v1.png",
+      "position": "2,1",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "water_reservoir",
+      "kind": "improvement",
+      "name": "Водосборник",
+      "sheet": "e04-tiles-v1.png",
+      "position": "2,2",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "dressed_stone_quarry",
+      "kind": "improvement",
+      "name": "Облицовочная каменоломня",
+      "sheet": "e04-tiles-v1.png",
+      "position": "2,3",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "great_library",
+      "kind": "wonder",
+      "name": "Великая библиотека",
+      "sheet": "e04-wonders-v1.png",
+      "position": "left",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "great_lighthouse",
+      "kind": "wonder",
+      "name": "Великий маяк",
+      "sheet": "e04-wonders-v1.png",
+      "position": "center",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    },
+    {
+      "id": "grand_amphitheatre",
+      "kind": "wonder",
+      "name": "Большой амфитеатр",
+      "sheet": "e04-wonders-v1.png",
+      "position": "right",
+      "status": "concept",
+      "implementation": "Proposal; no 3D model, rig, clip or gameplay implementation in this packet"
+    }
+  ]
+}

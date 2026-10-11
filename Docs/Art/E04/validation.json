@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-11",
+  "models": 32,
+  "finalConceptSheets": 5,
+  "generationRequests": 6,
+  "relativeLinksChecked": 41,
+  "visualInspection": "All sheets viewed; unit sheet v2 selected after siege mechanism correction. Concepts only, no meshes, rigs, clips or gameplay changes.",
+  "sheets": [
+    {
+      "file": "e04-buildings-v1.png",
+      "width": 1586,
+      "height": 992,
+      "bytes": 2857648,
+      "sha256": "078DC942D094E3884A9FF17649B016A97E16328D0A2EA95386DE971B02AEF8BB"
+    },
+    {
+      "file": "e04-residents-v1.png",
+      "width": 1774,
+      "height": 887,
+      "bytes": 2608503,
+      "sha256": "5D80117CFCFABE562095E218F5E986D5D937217B581C029FA7A3E868909D098B"
+    },
+    {
+      "file": "e04-tiles-v1.png",
+      "width": 1586,
+      "height": 992,
+      "bytes": 2842405,
+      "sha256": "E833A5B1B873DFC33C3A327ACAC7924738DDC85AB9E13EA04BDD683C43A3B1B6"
+    },
+    {
+      "file": "e04-units-v2.png",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 2276483,
+      "sha256": "3669EC14D296431CB12F086936FF86810D850E6B97A1C5BBC3E7589DA2B74BC0"
+    },
+    {
+      "file": "e04-wonders-v1.png",
+      "width": 1942,
+      "height": 809,
+      "bytes": 2593893,
+      "sha256": "7A62F45DB20EF9E76D12B16645202E81012725E29F301F961BB75B3045FD28A9"
+    }
+  ]
+}
