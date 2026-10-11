@@ -237,7 +237,8 @@ namespace Origins
             for(int i=0;i<members;i++)
             {
                 var member=Node(go.transform,"Member",members==1 ? Vector3.zero : new Vector3((i-1)*.19f,0,i==1 ? .1f : -.08f));
-                DetailedPerson(member,color,1,role,game.ToolStage);
+                if(unit.Kind==UnitKind.Spearman) SpearmanVisual.Create(member,color);
+                else DetailedPerson(member,color,1,role,game.ToolStage);
                 if(unit.Kind==UnitKind.Settler) { Round(member,"Travel pack",new Vector3(0,.25f,-.065f),new Vector3(.12f,.16f,.07f),Straw); }
                 if(unit.Kind==UnitKind.Trader)
                 {
@@ -408,6 +409,7 @@ namespace Origins
             {
                 Vector3 last; bool walking=unitPrevious.TryGetValue(pair.Key,out last) && (last-pair.Value.position).sqrMagnitude>.000001f;
                 foreach(var rig in pair.Value.GetComponentsInChildren<ArticulatedActor>()) rig.Pose(time+pair.Key*.3f,walking,false);
+                foreach(var actor in pair.Value.GetComponentsInChildren<SpearmanVisual>()) actor.SetWalking(walking);
                 unitPrevious[pair.Key]=pair.Value.position;
             }
             foreach(var a in animals)

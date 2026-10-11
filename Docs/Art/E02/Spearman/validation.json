@@ -1,0 +1,10 @@
+{
+    "triangles": 62330,
+    "renderers": 46,
+    "poses": 6,
+    "footsteps": 2,
+    "contacts": 1,
+    "rootMotion": false,
+    "contactForward": true,
+    "transitions": true
+}

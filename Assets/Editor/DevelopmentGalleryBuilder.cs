@@ -37,7 +37,8 @@ namespace Origins.Editor
             foreach(UnitKind kind in Enum.GetValues(typeof(UnitKind)))
             {
                 Transform model=presenter.CreateUnitPreview(kind); presenter.AddPreviewPlinth(model);
-                if(kind==UnitKind.Trader) model.gameObject.AddComponent<PreviewTraderMotion>();
+                if(kind==UnitKind.Spearman) model.gameObject.AddComponent<SpearmanPreviewMotion>();
+                else if(kind==UnitKind.Trader) model.gameObject.AddComponent<PreviewTraderMotion>();
                 else model.gameObject.AddComponent<PreviewUnitMotion>();
                 var unit=new Unit{Kind=kind};
                 AddModel(model,"Unit_"+kind,unit.Name,unit.Movement+" очка движения",groups[1].transform,index++,2,3.5f,1.2f);
@@ -98,7 +99,7 @@ namespace Origins.Editor
             var copy=(GameObject)PrefabUtility.InstantiatePrefab(prefab,group); copy.transform.localScale=Vector3.one*scale;
             Vector3 right=new Vector3(.7071068f,0,-.7071068f),forward=new Vector3(.7071068f,0,.7071068f);
             int columns=group.name=="Units" ? 2 : 3;
-            int actualRows=group.name=="Units" ? 3 : group.name=="Residents" ? 4 : 3;
+            int actualRows=group.name=="Units" ? Mathf.CeilToInt(Enum.GetValues(typeof(UnitKind)).Length/2f) : group.name=="Residents" ? 4 : 3;
             copy.transform.localPosition=right*((index%columns-(columns-1)*.5f)*8.4f)+forward*((actualRows-1)*.5f-index/columns)*8.5f;
         }
         static UnityEngine.Object Persist(UnityEngine.Object obj,string path)
